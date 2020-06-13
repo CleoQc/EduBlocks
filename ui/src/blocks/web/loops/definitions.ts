@@ -73,6 +73,17 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setHelpUrl("");
     }
   };
+  Blocks['web_continue'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField("continue");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#644A9E");
+      this.setTooltip("");
+      this.setHelpUrl("");
+    }
+  };
 
   Blocks['loop_get'] = {
     init: function () {

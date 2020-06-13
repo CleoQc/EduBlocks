@@ -258,6 +258,7 @@
       </value>
     </block>
     <block type="web_break"></block>
+    <block type="web_continue"></block>
     <block type="loop_get"></block>
   </category>
 
