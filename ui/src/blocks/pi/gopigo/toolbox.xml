@@ -1,0 +1,7 @@
+<category name="GoPiGo" colour="#004466" iconclass="blocklyTreeIconCustom gopigo">
+
+  <label text="Imports" web-class="myLabelStyle"></label>
+
+  <block type="import_easygopigo3"></block>
+
+</category>

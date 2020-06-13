@@ -675,6 +675,10 @@ button{
     content: "\f030";
 }
 
+.blocklyTreeIconCustom.gopigo::before {
+    content: "\f63c";
+}
+
 .blocklyTreeIconCustom.imports::before {
     content: "\f093";
 }
