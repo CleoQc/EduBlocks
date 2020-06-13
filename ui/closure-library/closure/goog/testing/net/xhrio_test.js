@@ -108,7 +108,7 @@ function testGetLastUri() {
   var xhr = new goog.testing.net.XhrIo();
   assertEquals('nothing sent yet, empty URI', '', xhr.getLastUri());
 
-  var requestUrl = 'http://www.example.com/';
+  var requestUrl = '';
   xhr.send(requestUrl);
   assertEquals('message sent, URI saved', requestUrl, xhr.getLastUri());
 }
@@ -118,11 +118,11 @@ function testGetLastMethod() {
   assertEquals('nothing sent yet, empty method', xhr.getLastMethod(), '');
 
   var method = 'POKE';
-  xhr.send('http://www.example.com/', method);
+  xhr.send('', method);
   assertEquals('message sent, method saved', method, xhr.getLastMethod());
   xhr.simulateResponse(200, '');
 
-  xhr.send('http://www.example.com/');
+  xhr.send('');
   assertEquals('message sent, method saved', 'GET', xhr.getLastMethod());
 }
 
@@ -131,12 +131,12 @@ function testGetLastContent() {
   assertUndefined('nothing sent yet, empty content', xhr.getLastContent());
 
   var postContent = 'var=value&var2=value2';
-  xhr.send('http://www.example.com/', undefined, postContent);
+  xhr.send('', undefined, postContent);
   assertEquals(
       'POST message sent, content saved', postContent, xhr.getLastContent());
   xhr.simulateResponse(200, '');
 
-  xhr.send('http://www.example.com/');
+  xhr.send('');
   assertUndefined('GET message sent, content cleaned', xhr.getLastContent());
 }
 
@@ -146,7 +146,7 @@ function testGetLastRequestHeaders() {
       'nothing sent yet, empty headers', xhr.getLastRequestHeaders());
 
   xhr.send(
-      'http://www.example.com/', undefined, undefined,
+      '', undefined, undefined,
       {'From': 'page@google.com'});
   assertObjectEquals(
       'Request sent with extra headers, headers saved',
@@ -161,7 +161,7 @@ function testGetLastRequestHeaders() {
   xhr.headers.set('X', 'A');
   xhr.headers.set('Y', 'B');
   xhr.send(
-      'http://www.example.com/', undefined, undefined, {'Y': 'P', 'Z': 'Q'});
+      '', undefined, undefined, {'Y': 'P', 'Z': 'Q'});
   assertObjectEquals(
       'Default headers combined with call headers',
       {'X': 'A', 'Y': 'P', 'Z': 'Q'}, xhr.getLastRequestHeaders());

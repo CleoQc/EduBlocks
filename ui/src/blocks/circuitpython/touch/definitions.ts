@@ -8,7 +8,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(touchcol);
       this.setTooltip('Imports the TouchIO library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 

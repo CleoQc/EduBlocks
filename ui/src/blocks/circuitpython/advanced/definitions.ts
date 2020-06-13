@@ -11,7 +11,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(advcol);
       this.setTooltip('Imports the microcontroller library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 

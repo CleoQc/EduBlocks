@@ -10,6 +10,11 @@
 .icon-cancel-circled:before { content: '\e808'; } /* '' */
 .icon-cancel:before { content: '\e809'; } /* '' */
 .icon-book:before { content: '\e80a'; } /* '' */
+.icon-python:before { content: '\e80b'; } /* '' */
+.icon-blocks:before { content: '\e80c'; } /* '' */
+.icon-view-mode:before { content: '\e80d'; } /* '' */
+.icon-zoom-in:before { content: '\e80e'; } /* '' */
+.icon-zoom-out:before { content: '\e80f'; } /* '' */
 .icon-menu:before { content: '\f0c9'; } /* '' */
 .icon-puzzle:before { content: '\f12e'; } /* '' */
 .icon-share:before { content: '\f1e0'; } /* '' */

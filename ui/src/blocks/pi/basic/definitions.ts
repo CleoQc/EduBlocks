@@ -11,7 +11,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Imports the time library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -25,7 +25,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Imports the signal library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -37,7 +37,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Pause');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -49,7 +49,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Imports the random library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -76,7 +76,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Pass to the next command');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -127,7 +127,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Use this to print a variable, a number, or even a string if you put in the quotes yourself.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -316,7 +316,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -330,7 +330,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Imports the math library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -342,7 +342,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Imports the audio library.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -392,7 +392,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Use this to print to the output box.');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -422,7 +422,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -463,7 +463,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -482,7 +482,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -688,7 +688,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('negates a Boolean value');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 
@@ -700,7 +700,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('breaks out of a loop');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 

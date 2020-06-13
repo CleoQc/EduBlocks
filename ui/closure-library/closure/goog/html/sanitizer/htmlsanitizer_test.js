@@ -173,7 +173,7 @@ function testBuilderCanOnlyBeUsedOnce() {
 
 
 function testAllowedCssSanitizeImage() {
-  var testUrl = 'http://www.example.com/image3.jpg';
+  var testUrl = 'image3.jpg';
   var html = '<div style="background-image: url(' + testUrl + ');"></div>';
   var sanitizer =
       new goog.html.sanitizer.HtmlSanitizer.Builder()

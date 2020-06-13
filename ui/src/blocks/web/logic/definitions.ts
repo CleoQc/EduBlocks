@@ -115,7 +115,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setColour("#49B04D");
       this.setTooltip('negates a Boolean value');
-      this.setHelpUrl('http://www.example.com/');
+      this.setHelpUrl('');
     },
   };
 

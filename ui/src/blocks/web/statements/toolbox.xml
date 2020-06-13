@@ -102,5 +102,5 @@
     </value>
   </block>
   <block type="stringinline"></block>
-
+  <block type="textinline"></block>
 </category>

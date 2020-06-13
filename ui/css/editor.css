@@ -8,9 +8,6 @@ body {
     width: 0 !important;
 }
 
-nav .login {
-    width: 160px;
-}
 
 .blocklyFlyoutLabelIcon {
     font-family: 'Font Awesome\ 5 Free';
@@ -98,12 +95,67 @@ nav .login {
     border-radius: 5px;
     padding-top: 0.5em;
     padding-bottom: 0.5em;
-    float: left;
+    float: right;
     height: 100%;
     margin: 0;
     display: flex;
     align-items: center;
 }
+
+.margin-button:hover{
+    border: solid white 2px;
+}
+
+.settings{
+    padding: 0px;
+    margin-right: 0px !important;
+    text-align: center;
+}
+
+.margin-button {
+    margin-left: 20px;
+    margin-top: 7px;
+    border: solid white 1px !important;
+    border-radius: 10px;
+}
+
+.dropbtn {
+    color: white;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    right: 5px;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+
+  #loginimage {
+      cursor: pointer;
+      margin-top: 7px;
+  }
+  
 
 @media only screen and (max-width: 600px) {
     #filename{
@@ -114,9 +166,10 @@ nav .login {
     }
 }
 
-@media only screen and (max-width: 400px) {
-    #loginimage{
-        display: none !important;
+
+@media only screen and (max-width: 1000px) {
+    .margin-button {
+        margin-left: 8px;
     }
 }
 
@@ -129,7 +182,7 @@ nav .login {
 
 nav .login img {
     max-height: 100%;
-    height: 45px;
+    height: 37px;
     border-radius: 50%;
     margin-right: 0.5em;
 }
@@ -207,6 +260,8 @@ nav .login img {
     border-width: 2px;
 }
 
+
+
 .blocklyTreeIconCustom{
     line-height: 54px !important; 
 }
@@ -253,14 +308,83 @@ table.primary td {
     margin-left: 20px;
 }
 
+.tab-button {
+    display: inline-block;
+    text-align: center;
+    margin: 0;
+    padding: 0.3em 0.9em;
+    vertical-align: middle;
+    background: #0074d9;
+    color: #fff;
+    border: 0;
+    border-radius: 0.2em;
+    width: auto;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin: 0.3em 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 0.2em;
+    height: auto;
+    box-shadow: 0 0 transparent inset;
+}
+
+
 .file {
     display: none;
 }
 
+.SelectModal__cell--text{
+    margin-right: 20px;
+}
+
 #workspace {
-    height: calc(100vh - 3em);
+    height: calc(100vh - 4.5em);
     position: relative;
-    margin-top: 3em;
+    margin-top: 5.271em;
+}
+
+.toolbar {
+    margin-top: 48px;
+    height: 2.5em;
+    background-color: #343350;
+    display: flex;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.toolbar-column{
+    flex: 50%;
+}
+
+
+.toolbar-opacity {
+    opacity: 40%;
+    -webkit-opacity: 0.4;
+    visibility:visible;
+}
+
+.active-mode{
+    opacity: 100%;
+    -webkit-opacity: 1;
+}
+
+.toolbar a {
+    margin-right: 0.6em;
+    height: 2.5em;
+    border-radius: 0px;
+}
+
+.toolbar a:focus {
+    background-color: teal;
 }
 
 .toggleViewButton {
@@ -314,17 +438,26 @@ table.primary td {
     right: 0;
     width: 100%;
     bottom: 0;
+    font-size: 11;
 }
+
+.zoomControls{float:right; margin-right: 0px !important; margin-left: 10px; background-color: #15BAD4 !important; display: none;};
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  margin: 0 0 0 0 !important;
+  }
+
 
 #terminal-dialog {
     position: fixed;
-    z-index: 10001;
-    left: 20px;
-    top: 20px;
-    right: 20px;
-    bottom: 20px;
-    border: solid 1px #000;
+    z-index: -1;
+    top: 59px;
+    right: 0px;
+    bottom: 0px;
     line-height: 20px;
+    width: 40%;
+    float: right;
 }
 
 
@@ -506,6 +639,11 @@ button{
     background-color: #49B04D !important;
 }
 
+.button-red {
+    background-color: red !important;
+    height: 39px !important;
+}
+
 
 .ImageModalOption button {
     height: 37px;
@@ -519,7 +657,7 @@ button{
 ---------------------------------------------------------------- */
 
 .TrinketView__Container {
-    height: calc(100% - 28px);
+    height: 100%;
     position: relative;
     background: white;
 }

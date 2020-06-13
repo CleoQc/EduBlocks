@@ -5,7 +5,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
         .appendField('import requests');
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip('Imports the requests library.');
       this.setHelpUrl('');
     },
@@ -17,7 +17,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
         .appendField('import json');
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip('Imports the JSON library.');
       this.setHelpUrl('');
     },
@@ -35,7 +35,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -53,7 +53,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -71,7 +71,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -89,7 +89,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -107,7 +107,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -125,7 +125,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -136,9 +136,9 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.appendDummyInput()
         .appendField(new Blockly.FieldVariable("r"), "r")
         .appendField(".")
-        .appendField(new Blockly.FieldDropdown([["url", "url"], ["text", "text"], ["encoding", "encoding"], ["content", "content"], ["json", "json"], ["raw", "raw"], ["status_code", "status_code"], ["headers", "headers"], ["history", "history"]]), "NAME");
+        .appendField(new Blockly.FieldDropdown([["url", "url"], ["text", "text"], ["encoding", "encoding"], ["content", "content"], ["json", "json"], ["raw", "raw"], ["status_code", "status_code"], ["headers", "headers"], ["history", "history"], ["ok", "ok"]]), "NAME");
       this.setOutput(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setTooltip("");
       this.setHelpUrl("");
@@ -157,7 +157,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -171,7 +171,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -189,7 +189,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -207,7 +207,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }
@@ -221,7 +221,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setInputsInline(true);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
-      this.setColour("#C2E434");
+      this.setColour("#FF69B4");
       this.setTooltip("");
       this.setHelpUrl("");
     }

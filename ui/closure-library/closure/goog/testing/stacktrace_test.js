@@ -62,10 +62,10 @@ function testParseStackFrameInV8() {
   assertObjectEquals(
       'nested context object + function name + url', expected, frame);
 
-  frameString = '    at http://www.example.com/jsunit.js:117:13';
+  frameString = '    at jsunit.js:117:13';
   frame = goog.testing.stacktrace.parseStackFrame_(frameString);
   expected = new goog.testing.stacktrace.Frame(
-      '', '', '', 'http://www.example.com/jsunit.js:117:13');
+      '', '', '', 'jsunit.js:117:13');
   assertObjectEquals('url only', expected, frame);
 
   frameString = '    at [object Object].exec [as execute] (file:///foo)';

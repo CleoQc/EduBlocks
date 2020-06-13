@@ -14,6 +14,7 @@ import ImageModal from './ImageModal';
 const copy = require('copy-text-to-clipboard');
 import Nav from './Nav';
 
+
 const Cookies = require("js-cookie")
 
 import OverModal from './OverwriteModal';
@@ -24,8 +25,8 @@ import FirebaseSelectModal from './FirebaseSelectModal';
 
 import TrinketView from './TrinketView';
 
-type AdvancedFunction = 'Export Python' | 'Themes' | 'Flash Hex' | 'Extensions' | 'Switch Language' | 'Split View';
-let AdvancedFunctions: AdvancedFunction[] = ['Export Python', 'Themes', "Switch Language", "Split View"];
+type AdvancedFunction = 'Export Python' | 'Themes' | 'Samples' | 'Extensions' | 'Switch Language' | 'Split View';
+let AdvancedFunctions: AdvancedFunction[] = ['Samples', 'Export Python', 'Themes', "Switch Language", "Split View"];
 
 type ShareOptions = 'Copy Shareable URL' | 'Copy Embed Code' | 'Share to Google Classroom' | 'Share to Microsoft Teams';
 let ShareOptions: ShareOptions[] = ['Copy Shareable URL', 'Copy Embed Code', 'Share to Google Classroom', 'Share to Microsoft Teams'];
@@ -57,7 +58,9 @@ interface FileFirebaseSelectModalOption {
 
 interface State {
     platform?: PlatformInterface;
+    currentPlatform: any;
     viewMode: ViewMode;
+    isSaved: any;
     includeTurtle: boolean;
     modal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'error' | 'files';
     prevModal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'error' | 'files';
@@ -69,8 +72,6 @@ interface State {
     files: FileFirebaseSelectModalOption[];
 }
 
-
-// Labels
 
 export class GlobalVars {
     public static openFiles: any = "Open";
@@ -110,6 +111,8 @@ export default class Page extends Component<Props, State> {
         this.state = {
             viewMode: ViewModeBlockly,
             modal: null,
+            currentPlatform: "",
+            isSaved: "",
             includeTurtle: false,
             prevModal: null,
             extensionsActive: [],
@@ -206,13 +209,16 @@ export default class Page extends Component<Props, State> {
 
         (document.getElementById("filename") as HTMLInputElement).value = "";
 
-        this.setState({fileName: "Untitled"});
+        this.setState({fileName: "Untitled", isSaved: ""});
 
     }
+
+
 
     public componentDidMount() {
 	this.selectPlatform("RaspberryPi");
         let currentTheme = Cookies.get("theme")
+        this.activeButton("blocks");
 
         if (this.isIE()){
             this.setState({ modal: "IE" })
@@ -262,17 +268,7 @@ export default class Page extends Component<Props, State> {
 
     }
     
-    }
-
-    private toggleView(): 0 {
-        switch (this.state.viewMode) {
-            case ViewModeBlockly:
-                return this.switchView(ViewModePython);
-
-            case ViewModePython:
-                return this.switchView(ViewModeBlockly);
-        }
-    }
+    }   
 
     private switchView(viewMode: ViewMode): 0 {
         switch (viewMode) {
@@ -291,6 +287,11 @@ export default class Page extends Component<Props, State> {
                 blockEditor.style.display = "none";
                 pyEditor.style.display = "block";
                 this.setState({ viewMode: 'python' });
+                let zoomin = document.getElementById('zoomin') as HTMLBodyElement;
+                let zoomout = document.getElementById('zoomout') as HTMLBodyElement;
+        
+                zoomin.style.display = "block";
+                zoomout.style.display = "block";
 
                 return 0;
 
@@ -319,6 +320,22 @@ export default class Page extends Component<Props, State> {
             this.setState({includeTurtle: false})
         }
 
+        let workspace = document.getElementById('workspace') as HTMLBodyElement;
+        let splitview = document.getElementById('splitview') as HTMLBodyElement;
+        let run = document.getElementById('run') as HTMLBodyElement;
+        let stop = document.getElementById('stop') as HTMLBodyElement;
+
+        run.style.display = "none";
+        stop.style.display = "block";
+        workspace.style.width = "60%";
+        splitview.style.pointerEvents = "none";
+
+        this.activeButton("blocks")
+        this.switchView("blocks");
+        this.splitView(false);
+
+        window.dispatchEvent(new Event('resize'))
+
         if (this.remoteShellView) {
             this.remoteShellView.focus();
             this.remoteShellView.reset();
@@ -337,6 +354,25 @@ export default class Page extends Component<Props, State> {
         this.updateFromPython(python);
     }
 
+    private showZoomControls() {
+        let zoomin = document.getElementById('zoomin') as HTMLBodyElement;
+        let zoomout = document.getElementById('zoomout') as HTMLBodyElement;
+
+        zoomin.style.display = "block";
+        zoomout.style.display = "block";
+        return ""
+        console.log("Hi")
+    }
+
+    private hideZoomControls() {
+        let zoomin = document.getElementById('zoomin') as HTMLBodyElement;
+        let zoomout = document.getElementById('zoomout') as HTMLBodyElement;
+
+        zoomin.style.display = "none";
+        zoomout.style.display = "none";
+        return ""
+    
+    }
 
     private async openFile() {
         const user = null
@@ -368,6 +404,9 @@ export default class Page extends Component<Props, State> {
         this.closeModal();
         let self = this;
         let newFileName = "";
+        
+        this.setState({isSaved: file});
+
         await console.log("Opening file...")
         if (file.name.indexOf("(Python)") !== -1 && this.state.platform!.key !== "Python"){
             this.selectPlatform("Python");
@@ -428,17 +467,38 @@ export default class Page extends Component<Props, State> {
 
     private async deleteFirebaseFile(file: firebase.storage.Reference) {
         file.delete();
-        this.closeModal();
+        await this.closeModal();     
     } 
 
     private delay(ms: number) {
         return new Promise( resolve => setTimeout(resolve, ms) );
     }
 
-    
-    
+    private async pythonZoom(direction: string) {
+        if (direction === "in"){
+            let python = document.getElementById('editor') as HTMLBodyElement;
+            var style = window.getComputedStyle(python , null).getPropertyValue('font-size');
+            var fontSize = parseFloat(style); 
+            python.style.fontSize = (fontSize + 3) + 'px';
+        }
+        if (direction === "out"){
+            let python = document.getElementById('editor') as HTMLBodyElement;
+            var style = window.getComputedStyle(python , null).getPropertyValue('font-size');
+            var fontSize = parseFloat(style); 
+            python.style.fontSize = (fontSize - 3) + 'px';
+        }
+    }
+
 
     private async shareFirebaseFile(file: firebase.storage.Reference) {
+
+    
+
+        if (this.state.isSaved.length < 1) {
+            alert("Please save this file first")
+        }
+        else{
+
         let filePlatform = ""
         if (file.name.indexOf("(Python)") !== -1){
             filePlatform = "Python"
@@ -452,13 +512,14 @@ export default class Page extends Component<Props, State> {
         if (file.name.indexOf("(CircuitPython)") !== -1){
             filePlatform = "CircuitPython"
         }
-        let fileURL = await file.getDownloadURL();
+        let fileURL = await this.state.isSaved.getDownloadURL();
         let newFileURL = fileURL.substring(0, fileURL.indexOf('&token='));
         const encoded = btoa(newFileURL);
         const edublocksLink = "https://app.edublocks.org/#share?" + filePlatform + "?" + encoded;
         await this.setState({ shareURL: edublocksLink});
         await console.log(this.state.shareURL);
         await this.setState({ modal: "shareoptions", prevModal: null});
+    }
     }
 
     private async runShareOptions(func: ShareOptions) {
@@ -624,6 +685,7 @@ export default class Page extends Component<Props, State> {
             this.props.app.saveHex(this.state.fileName, python, this.state.extensionsActive);
         }
     }
+    
 
     private async selectPlatform(platformKey: Platform) {
         this.closeModal()
@@ -634,6 +696,7 @@ export default class Page extends Component<Props, State> {
             this.setState({"fileName": "code"});
             filebox!.style.display = "none";
         }
+
         else{
             let filebox = document.getElementById("filename");
             filebox!.style.display = "block";
@@ -665,6 +728,7 @@ export default class Page extends Component<Props, State> {
 
         this.setState({
             platform,
+            currentPlatform: platformKey,
             modal: null,
             extensionsActive: platform.defaultExtensions,
         });
@@ -739,6 +803,17 @@ export default class Page extends Component<Props, State> {
 
 
     private onTerminalClose() {
+        let workspace = document.getElementById('workspace') as HTMLBodyElement;
+        let splitview = document.getElementById('splitview') as HTMLBodyElement;
+        let run = document.getElementById('run') as HTMLBodyElement;
+        let stop = document.getElementById('stop') as HTMLBodyElement;
+
+        run.style.display = "block";
+        stop.style.display = "none";
+
+        workspace.style.width = "100%";
+        splitview.style.pointerEvents = "auto";
+        window.dispatchEvent(new Event('resize'))
         this.closeModal();
     }
 
@@ -795,11 +870,6 @@ export default class Page extends Component<Props, State> {
 
     private getAdvancedFunctionList(): SelectModalOption[] {
         let advancedFunctions = AdvancedFunctions;
-
-        if (this.state.platform && this.state.platform.capabilities.indexOf('HexFlash') !== -1) {
-            advancedFunctions = [...advancedFunctions, 'Flash Hex'];
-            advancedFunctions = [...advancedFunctions, 'Extensions'];
-        }
 
         return advancedFunctions.map((func) => ({
             label: func,
@@ -923,19 +993,48 @@ export default class Page extends Component<Props, State> {
         }
     }
 
+    private activeButton(view: string){
+        if (view === "blocks"){
+            let blockview = document.getElementById('blocksview') as HTMLBodyElement;
+            let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
+            let splitview = document.getElementById('splitview') as HTMLBodyElement;
+
+            blockview.classList.add("active-mode");
+            pythonview.classList.remove("active-mode");
+            splitview.classList.remove("active-mode");
+        }
+
+        if (view === "pythonview"){
+            let blockview = document.getElementById('blocksview') as HTMLBodyElement;
+            let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
+            let splitview = document.getElementById('splitview') as HTMLBodyElement;
+
+            blockview.classList.remove("active-mode");
+            pythonview.classList.add("active-mode");
+            splitview.classList.remove("active-mode");
+        }
+
+        if (view === "split"){
+            let blockview = document.getElementById('blocksview') as HTMLBodyElement;
+            let pythonview = document.getElementById('pythonview') as HTMLBodyElement;
+            let splitview = document.getElementById('splitview') as HTMLBodyElement;
+
+            blockview.classList.remove("active-mode");
+            pythonview.classList.remove("active-mode");
+            splitview.classList.add("active-mode");
+        }
+        return "Activebutton"
+    }
+
     private async splitView(toggle: boolean){
         if (toggle === true){
             split = true;
             let blocklyEditor = document.getElementById('blockly') as HTMLBodyElement;
             let pythonEditor = document.getElementById('python') as HTMLBodyElement;
             let editorElement = document.getElementById('editor') as HTMLBodyElement;
-            let toggleElement = document.getElementById('toggleViewButton') as HTMLBodyElement;
-            let exitElement = document.getElementById('ExitSplit') as HTMLBodyElement;
 
             blocklyEditor.style.width = "60%";
             editorElement.style.width = "40%";
-            toggleElement.style.display = "none";
-            exitElement.style.display = "block";
 
             window.dispatchEvent(new Event('resize'))
 
@@ -953,11 +1052,7 @@ export default class Page extends Component<Props, State> {
             split = false;
             let editorElement = document.getElementById('editor') as HTMLBodyElement;
             let blocklyEditor = document.getElementById('blockly') as HTMLBodyElement;
-            let exitElement = document.getElementById('ExitSplit') as HTMLBodyElement;
-            let toggleElement = document.getElementById('toggleViewButton') as HTMLBodyElement;
             
-            toggleElement.style.display = "block";
-            exitElement.style.display = "none";
 
             window.dispatchEvent(new Event('resize'))
 
@@ -969,6 +1064,22 @@ export default class Page extends Component<Props, State> {
             this.switchView(ViewModeBlockly);
 
         }
+    }
+
+    private async hexflashing(){
+        const python = this.state.doc.python;
+
+            if (python) {
+                this.setState({ modal: 'progress', progress: 0 });
+
+                try {
+                    await this.props.app.flashHex(python, this.state.extensionsActive, (progress) => {
+                        this.setState({ progress });
+                    });
+                } finally {
+                    this.setState({ modal: null });
+                }
+            }
     }
     
 
@@ -984,10 +1095,13 @@ export default class Page extends Component<Props, State> {
             
         }
 
+        if (func === 'Samples') {
+            this.openSamples();   
+        }
+
         if (func === 'Split View') {
             this.splitView(true)    
         }
-
 
         if (func === 'Switch Language') {
             this.setState({ modal: 'languages' });
@@ -996,24 +1110,6 @@ export default class Page extends Component<Props, State> {
         if (func === 'Extensions') {
             await this.openExtensions();
         }
-
-        if (func === 'Flash Hex') {
-            const python = this.state.doc.python;
-
-            if (python) {
-                this.setState({ modal: 'progress', progress: 0 });
-
-                try {
-                    await this.props.app.flashHex(python, this.state.extensionsActive, (progress) => {
-                        this.setState({ progress });
-                    });
-                } finally {
-                    this.setState({ modal: null });
-                }
-            }
-        }
-
-
     }
 
     
@@ -1141,7 +1237,16 @@ export default class Page extends Component<Props, State> {
                     downloadHex={this.hasCapability('HexDownload') ? () => this.downloadHex() : undefined}
                     openCode={() => this.openFile()}
                     saveCode={() => this.saveFile()}
-                    newCode={() => this.new()}
+                    pyzoomin={() => this.pythonZoom("in")}
+                    share={() => this.shareFirebaseFile(this.state.isSaved)}
+                    pyzoomout={() => this.pythonZoom("out")}
+                    flashHex={() => this.hexflashing()}
+                    zoomcontrols={() => this.hexflashing()}
+                    closeTerminal={() => this.onTerminalClose()}
+                    blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.activeButton("blocks") && this.hideZoomControls() && this.switchView("blocks")}
+                    python={() => this.splitView(false) && this.activeButton("pythonview") && this.switchView("python")}
+                    splitview={() => this.splitView(true) && window.dispatchEvent(new Event('resize')) && this.activeButton("split") && this.showZoomControls()}
+                    newCode={() => this.selectPlatform(this.state.currentPlatform) && this.new()}
                     openSamples={() => this.openSamples()}
                     openThemes={() => this.openThemes()}
                     onFunction={() => this.openAdvancedFunctionDialog()}
@@ -1151,7 +1256,7 @@ export default class Page extends Component<Props, State> {
                 />
 
                 <section id='workspace'>
-                    <button
+{/*                     <button
                         id='toggleViewButton'
                         class='toggleViewButton'
                         onClick={() => this.toggleView()}
@@ -1170,7 +1275,7 @@ export default class Page extends Component<Props, State> {
 
                         Exit Split View
 
-                    </button>
+                    </button> */}
                     
 
                     <BlocklyView

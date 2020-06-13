@@ -56,6 +56,10 @@ export async function getToolBoxXml(extensions: Extension[]) {
     (await import('./web/processing/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'web', 'processing', 'toolbox.xml'));
 
+    (await import('./web/requests/definitions')).default(Blockly.Blocks);
+    (await import('./web/requests/generators')).default(Blockly.Python as any);
+    toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'web', 'requests', 'toolbox.xml'));
+
   }
 
   if (extensions.indexOf('CircuitPython General') !== -1) {
