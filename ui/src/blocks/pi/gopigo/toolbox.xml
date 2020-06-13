@@ -1,7 +1,15 @@
-<category name="GoPiGo" colour="#004466" iconclass="blocklyTreeIconCustom gopigo">
+<category name="GoPiGo" colour="#CC3333" iconclass="blocklyTreeIconCustom gopigo">
 
   <label text="Imports" web-class="myLabelStyle"></label>
 
   <block type="import_easygopigo3"></block>
-
+  <block type="gpgset"></block>
+  <block type="gpgmovement_noarg"></block>
+    <block type="gpgsetspeed">
+      <value name="speed">
+        <shadow type="textinline">
+          <field name="text">300</field>
+        </shadow>
+      </value>
+    </block>
 </category>
