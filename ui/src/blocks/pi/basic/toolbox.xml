@@ -6,8 +6,8 @@
     <block type="import_time"></block>
     <block type="import_math"></block>
     <block type="random"></block>
-    <block type="import_pygal"></block>
-    <block type="import_processing"></block>
+    <!-- <block type="import_pygal"></block> -->
+    <!-- <block type="import_processing"></block> -->
 
   </category>
 
