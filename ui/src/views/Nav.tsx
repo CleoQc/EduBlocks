@@ -1,6 +1,6 @@
 import React = require('preact');
 import {Component} from 'preact';
-import Auth from './Auth';
+// import Auth from './Auth';
 import {navLabels} from './Page';
 import { GlobalVars } from './Page';
 
@@ -34,9 +34,9 @@ interface Props {
 
     onFileChange(fileName: string): void;
 
-    openAuth(): void;
+    // openAuth(): void;
 
-    closeAuth(): void;
+    // closeAuth(): void;
 
     sync: boolean;
 }
@@ -47,14 +47,32 @@ export default class Nav extends Component<Props, {}> {
 
         return (
             <nav>
-                <a class='brand' data-tooltip='Change Mode'>
+                {/* <a class='brand' data-tooltip='Change Mode'>
                     {this.props.platformImg && <img src={this.props.platformImg} class='Nav__platformImg' height={50}/>}
-                    <img class='logo' src='https://i.ibb.co/2Zp0pyw/weblogo.png'/>
+                    
                 </a>
-                <Auth openAuth={this.props.openAuth} closeAuth={this.props.closeAuth}/>
+                <Auth openAuth={this.props.openAuth} closeAuth={this.props.closeAuth}/> */}
+                <img class='logo' style="float:left;padding-right: 50px;" src='images/weblogo.png'/>
+
+                <a class='button icon-plus' style="float:left;" id="new" title='Create new file' href='javascript:void(0)'
+                    onClick={() => this.props.newCode()}>
+                    {navLabels[0]}
+                </a>
+
+                <a class='button icon-folder-open' style="float:left;" title='Open a file' href='javascript:void(0)'
+                    onClick={() => this.props.openCode()}>
+                    {GlobalVars.openFiles}
+                </a>
                 <input id="filename" class='brand' placeholder={navLabels[7]}
-                       style='width: 200px; color:black; margin-left: 5px; float:right;'
-                       onChange={(e) => this.props.onFileChange((e.target as any).value)}/>
+                    style='width: 200px; color:black; margin-left: 5px;float: left;'
+                    onChange={(e) => this.props.onFileChange((e.target as any).value)}/>
+
+                <a class='button icon-floppy' style="float:left;" title='Save a file' href='javascript:void(0)'
+                    onClick={() => this.props.saveCode()}>
+                    {navLabels[2]}
+                </a>                
+
+
                 <input id='bmenub' type='checkbox' class='show'/>
                 <label for='bmenub' id="burgermenu" class='burger pseudo button icon-menu'/>
 

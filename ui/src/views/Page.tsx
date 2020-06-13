@@ -3,7 +3,7 @@ import { Component } from 'preact';
 import { getPlatform, getPlatformList } from '../platforms';
 import { App, Capability, Extension, Platform, PlatformInterface } from '../types';
 import * as firebase from 'firebase/app';
-import { AuthModal } from './Auth';
+// import { AuthModal } from './Auth';
 import AlertModal from './AlertModal';
 import IEModal from './IEModal';
 import LoadModal from './LoadModal';
@@ -59,8 +59,8 @@ interface State {
     platform?: PlatformInterface;
     viewMode: ViewMode;
     includeTurtle: boolean;
-    modal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
-    prevModal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'auth' | 'error' | 'files';
+    modal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'extensionsnew' |  'share' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'error' | 'files';
+    prevModal: null | 'platform' | 'turtle' | 'IE' | 'generating' | 'share' | 'extensionsnew' | 'shareoptions' | 'terminal' | 'languages' | 'samples' | 'themes' | 'extensions' | 'functions' | 'pythonOverwritten' | 'https' | 'noCode' | 'codeOverwrite' | 'progress' | 'error' | 'files';
     extensionsActive: Extension[];
     progress: number;
     shareURL: string;
@@ -339,24 +339,24 @@ export default class Page extends Component<Props, State> {
 
 
     private async openFile() {
-        const user = firebase.auth().currentUser;
+        const user = null
         if (user) {
-            let self = this;
-            const ref = firebase.storage().ref(`blocks/${user.uid}`);
-            ref.listAll().then(function (res) {
-                self.setState({
-                    files: res.items.map((i) => ({
-                        label: i.name,
-                        ref: i,
-                    })),
-                    modal: 'files',
-                });
-            }).catch(function (error) {
-                self.setState({
-                    modal: 'error',
-                });
-                console.error(error);
-            });
+            // let self = this;
+            // const ref = firebase.storage().ref(`blocks/${user.uid}`);
+            // ref.listAll().then(function (res) {
+            //     self.setState({
+            //         files: res.items.map((i) => ({
+            //             label: i.name,
+            //             ref: i,
+            //         })),
+            //         modal: 'files',
+            //     });
+            // }).catch(function (error) {
+            //     self.setState({
+            //         modal: 'error',
+            //     });
+            //     console.error(error);
+            // });
 
         } else {
             const xml = await this.props.app.openFile();
@@ -563,45 +563,45 @@ export default class Page extends Component<Props, State> {
 
         else {
             if (xml) {
-                const user = firebase.auth().currentUser;
+                const user = null
     
                 if (user) {
-                    let self = this;
-                    this.setState({
-                        modal: 'progress',
-                    });
-                    let plat = "";
+                    // let self = this;
+                    // this.setState({
+                    //     modal: 'progress',
+                    // });
+                    // let plat = "";
     
-                    if (this.state.platform!.key === "Python"){
-                        plat = " (Python)"
-                    }
-                    if (this.state.platform!.key === "MicroBit"){
-                        plat = " (microbit)"
-                    }
-                    if (this.state.platform!.key === "RaspberryPi"){
-                        plat = " (RPi)"
-                    }
-                    if (this.state.platform!.key === "CircuitPython"){
-                        plat = " (CircuitPython)"
-                    }
+                    // if (this.state.platform!.key === "Python"){
+                    //     plat = " (Python)"
+                    // }
+                    // if (this.state.platform!.key === "MicroBit"){
+                    //     plat = " (microbit)"
+                    // }
+                    // if (this.state.platform!.key === "RaspberryPi"){
+                    //     plat = " (RPi)"
+                    // }
+                    // if (this.state.platform!.key === "CircuitPython"){
+                    //     plat = " (CircuitPython)"
+                    // }
     
-                    const ref = firebase.storage().ref(`blocks/${user.uid}/${this.state.fileName}${plat}`);
-                    const task = ref.putString(xml, undefined, {
-                        contentType: 'text/xml',
-                    });
-                    task.on('state_changed', function (snapshot) {
-                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes);
-                        self.setState({
-                            progress: progress,
-                        });
-                    }, function (error) {
-                        self.setState({
-                            modal: 'error',
-                        });
-                        console.error(error);
-                    }, function () {
-                        self.closeModal();
-                    });
+                    // const ref = firebase.storage().ref(`blocks/${user.uid}/${this.state.fileName}${plat}`);
+                    // const task = ref.putString(xml, undefined, {
+                    //     contentType: 'text/xml',
+                    // });
+                    // task.on('state_changed', function (snapshot) {
+                    //     const progress = (snapshot.bytesTransferred / snapshot.totalBytes);
+                    //     self.setState({
+                    //         progress: progress,
+                    //     });
+                    // }, function (error) {
+                    //     self.setState({
+                    //         modal: 'error',
+                    //     });
+                    //     console.error(error);
+                    // }, function () {
+                    //     self.closeModal();
+                    // });
                 } else {
                     await this.props.app.saveFile(this.state.fileName, xml, 'xml', 'text/xml;charset=utf-8');
                 }
@@ -689,9 +689,9 @@ export default class Page extends Component<Props, State> {
     }
 
 
-    private openAuth() {
-        this.setState({ modal: 'auth', prevModal: this.state.modal });
-    }
+    // private openAuth() {
+    //     this.setState({ modal: 'auth', prevModal: this.state.modal });
+    // }
 
 
     private openSamples() {
@@ -1032,10 +1032,10 @@ export default class Page extends Component<Props, State> {
                     }}
                 />
 
-                <AuthModal
+                {/* <AuthModal
                     visible={this.state.modal === 'auth'}
                     onClose={() => this.closeModal()}
-                />
+                /> */}
 
                 <AlertModal
                     title={generic[7]}
@@ -1146,8 +1146,8 @@ export default class Page extends Component<Props, State> {
                     openThemes={() => this.openThemes()}
                     onFunction={() => this.openAdvancedFunctionDialog()}
                     onFileChange={(fileName) => this.fileChange(fileName)}
-                    openAuth={() => this.openAuth()}
-                    closeAuth={() => this.closeModal()}
+                    // openAuth={() => this.openAuth()}
+                    // closeAuth={() => this.closeModal()}
                 />
 
                 <section id='workspace'>
