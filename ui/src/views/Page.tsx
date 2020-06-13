@@ -109,7 +109,7 @@ export default class Page extends Component<Props, State> {
 
         this.state = {
             viewMode: ViewModeBlockly,
-            modal: 'platform',
+            modal: null,
             includeTurtle: false,
             prevModal: null,
             extensionsActive: [],
@@ -211,6 +211,7 @@ export default class Page extends Component<Props, State> {
     }
 
     public componentDidMount() {
+	this.selectPlatform("RaspberryPi");
         let currentTheme = Cookies.get("theme")
 
         if (this.isIE()){
@@ -650,7 +651,7 @@ export default class Page extends Component<Props, State> {
             if (navigator.platform.indexOf('arm') !== -1) {
                 await this.props.app.initConnection('localhost');
             } else {
-                ip = prompt('Please enter your Raspberry Pi\'s IP address');
+                ip = '192.168.0.182';
 
                 if (!ip) return;
 
