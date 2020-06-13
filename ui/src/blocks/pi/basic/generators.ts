@@ -204,7 +204,7 @@ export default function define(Python: Blockly.BlockGenerators) {
     branch = Blockly.Python.addLoopTrap(branch, block.id) || Blockly.Python.PASS;
     // const statements_name = Blockly.Python.statementToCode(block, 'NAME');
     // TODO: Assemble Python into code variable.
-    const code = 'def ' + text_1 + '(' + text_2 + '):\n' + branch;
+    const code = '\n'+ 'def ' + text_1 + '(' + text_2 + '):\n' + branch + '\n';
     return code;
   };
 
