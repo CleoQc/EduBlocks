@@ -679,6 +679,21 @@ button{
     content: "\f63c";
 }
 
+.blocklyTreeIconCustom.bulb::before {
+    content: "\f0eb";
+}
+
+.blocklyTreeIconCustom.servo::before {
+    content: "\f024";
+}
+
+.blocklyTreeIconCustom.sensor::before {
+    content: "\f06e";
+}
+.blocklyTreeIconCustom.actuator::before {
+    content: "\f256";
+}
+
 .blocklyTreeIconCustom.imports::before {
     content: "\f093";
 }
