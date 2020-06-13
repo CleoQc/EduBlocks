@@ -79,13 +79,13 @@ export default class Auth extends React.Component<AuthProps, State> {
         this.props.openAuth();
     }
 
-    private logOutAccount() {
-        firebase.auth().signOut().then(function () {
-            GlobalVars.openFiles = "Open";
-        }, function (error) {
-            // An error happened.
-        });
-    }
+    // private logOutAccount() {
+    //     firebase.auth().signOut().then(function () {
+    //         GlobalVars.openFiles = "Open";
+    //     }, function (error) {
+    //         // An error happened.
+    //     });
+    // }
 
     componentDidMount(): void {
         if (this.ui.isPendingRedirect()) {
@@ -113,15 +113,10 @@ export default class Auth extends React.Component<AuthProps, State> {
     public render() {
         if (this.state.user) {
             GlobalVars.openFiles = "Files"
-            return <div className='login'>
-                {this.state.user.photoURL ? <img id="loginimage" src={this.state.user.photoURL} alt='' /> : <img id="loginimage" src="images/default-profile-image.png" alt='' />}
-                <button style='background: rgba(0, 0, 0, 0); padding: 0.1em !important;' onClick={this.logOutAccount} data-tooltip='Log Out'><span id="name">{this.state.user.displayName}</span></button>
-            </div>;
+            return <div></div>;
         }
 
-        return <div className='login'>
-            <button style='background: rgba(0, 0, 0, 0)' onClick={this.openAuth}><i class='fas fa-sign-in-alt'></i>  {navLabels[6]}</button>
-        </div>;
+        return <div></div>
     }
 }
 
