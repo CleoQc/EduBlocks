@@ -72,6 +72,11 @@
 </category>
 
 <category name="GoPiGo Sensors" colour="#CC3333" iconclass="blocklyTreeIconCustom sensor">
+  <label text="Init" web-class="myLabelStyle"></label>
+  <block type="gpganalogdigital"></block>
+  <label text="Analog and Digital" web-class="myLabelStyle"></label>
+  <block type="gpgread"></block>
+  <!-- <block type="gpgwrite"></block> -->
 </category>
 
 <category name="GoPiGo Actuators" colour="#CC3333" iconclass="blocklyTreeIconCustom actuator">
