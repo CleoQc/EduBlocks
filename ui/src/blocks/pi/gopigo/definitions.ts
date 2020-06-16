@@ -261,5 +261,54 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     },
   };
 
+  /////////////////////////////////////////////////////////////////////////
+  //
+  // SENSORS
+  //
+  /////////////////////////////////////////////////////////////////////////
+
+
+  Blocks['gpganalogdigital'] = {
+    init: function () {
+      this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
+      .appendField(' = ')
+        .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
+        .appendField('.')
+        .appendField(new Blockly.FieldDropdown([
+          ['init_light_sensor', 'init_light_sensor'], 
+          ['init_loudness_sensor', 'init_loudness_sensor'],
+          ['init_buzzer', 'init_buzzer'], 
+          ['init_led', 'init_led'],
+          ['init_button_sensor', 'init_button_sensor'], 
+        ]), 'action')
+        .appendField("(port='")
+        .appendField(new Blockly.FieldDropdown([
+          ['AD1', 'AD1'], 
+          ['AD2', 'AD2'],
+        ]), 'port')
+        .appendField("')")
+        ;
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('Set gopigo movement');
+      // this.setHelpUrl('https://gpiozero.readthedocs.io/en/stable/api_input.html#light-sensor-ldr');
+    },
+  };
+
+  Blocks['gpgread'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
+        .appendField('.read()'); 
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('negates a Boolean value');
+      // this.setHelpUrl('');
+    },
+  };
 }
 
