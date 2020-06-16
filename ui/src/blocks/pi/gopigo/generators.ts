@@ -22,14 +22,14 @@ export default function define(Python: Blockly.BlockGenerators) {
   Python['gpggetspeed'] = function (block) {
     const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('speed'), Blockly.Variables.NAME_TYPE);
     const robot_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
-    const code = variable_name + '= ' + robot_name + '.get_speed()\n';
+    const code = variable_name + ' = ' + robot_name + '.get_speed()\n';
     return code;
   }; 
 
   Python['gpggetvolt'] = function (block) {
     const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('voltage'), Blockly.Variables.NAME_TYPE);
     const robot_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
-    const code = variable_name + '= ' + robot_name + '.volt()\n';
+    const code = variable_name + ' = ' + robot_name + '.volt()\n';
     return code;
   }; 
 
@@ -86,7 +86,7 @@ export default function define(Python: Blockly.BlockGenerators) {
     const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
     var text_bracket = Blockly.Python.valueToCode(block, 'color', Blockly.Python.ORDER_ATOMIC);
     // Assemble Python into code variable.
-    const code = variable_name + '.seteyecolor('+ text_bracket + "')\n"
+    const code = variable_name + '.seteyecolor('+ text_bracket + ")\n"
     return code;
   };
 
@@ -94,7 +94,7 @@ export default function define(Python: Blockly.BlockGenerators) {
     const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
     const dropdown_action = block.getFieldValue('action');
     // Assemble Python into code variable.
-    const code = variable_name + "."+dropdown_action+ "\n";
+    const code = variable_name + "."+dropdown_action+ "()\n";
     return code;
   };
 
@@ -108,4 +108,19 @@ export default function define(Python: Blockly.BlockGenerators) {
     const code = variable_name + '.' + dropdown_action + "('"+ dropdown_which +"')\n"
     return code;
   };
+
+/////////////////////////////////////////////////////////////////////////
+//
+// SENSORS
+//
+/////////////////////////////////////////////////////////////////////////
+Python['gpganalogdigital'] = function (block) {
+  const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('my_sensor'), Blockly.Variables.NAME_TYPE);
+  const robot_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
+  const dropdown_action = block.getFieldValue('action');
+  const dropdown_port = block.getFieldValue('port');
+  const code = variable_name + ' = ' + robot_name + '.' + dropdown_action + "('" + dropdown_port + "')\n";
+  return code;
+}; 
+
 }
