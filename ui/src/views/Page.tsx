@@ -714,7 +714,7 @@ export default class Page extends Component<Props, State> {
             if (navigator.platform.indexOf('arm') !== -1) {
                 await this.props.app.initConnection('localhost');
             } else {
-                ip = '192.168.0.182';
+                ip = location.host;
 
                 if (!ip) return;
 
