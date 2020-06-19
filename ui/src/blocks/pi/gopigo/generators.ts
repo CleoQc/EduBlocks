@@ -84,9 +84,10 @@ export default function define(Python: Blockly.BlockGenerators) {
 
   Python['gpgseteyecolor'] = function (block) {
     const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
+    const dropdown_action = block.getFieldValue('action');
     var text_bracket = Blockly.Python.valueToCode(block, 'color', Blockly.Python.ORDER_ATOMIC);
     // Assemble Python into code variable.
-    const code = variable_name + '.seteyecolor('+ text_bracket + ")\n"
+    const code = variable_name + '.' + dropdown_action + '('+ text_bracket + ")\n"
     return code;
   };
 
