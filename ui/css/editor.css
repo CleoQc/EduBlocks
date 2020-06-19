@@ -343,7 +343,7 @@ table.primary td {
 }
 
 #workspace {
-    height: calc(100vh - 4.5em);
+    height: calc(100vh - 5.5em);
     position: relative;
     margin-top: 5.271em;
 }
