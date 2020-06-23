@@ -828,6 +828,7 @@ button{
 .blocklyTreeIconCustom.sensor::before {
     content: "\f06e";
 }
+
 .blocklyTreeIconCustom.actuator::before {
     content: "\f256";
 }
