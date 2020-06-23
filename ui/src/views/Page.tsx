@@ -1247,7 +1247,6 @@ export default class Page extends Component<Props, State> {
                     share={() => this.shareFirebaseFile(this.state.isSaved)}
                     pyzoomout={() => this.pythonZoom("out")}
                     flashHex={() => this.hexflashing()}
-                    zoomcontrols={() => this.hexflashing()}
                     closeTerminal={() => this.onTerminalClose()}
                     blocks={() => this.splitView(false) && window.dispatchEvent(new Event('resize')) && this.activeButton("blocks") && this.hideZoomControls() && this.switchView("blocks")}
                     python={() => this.splitView(false) && this.activeButton("pythonview") && this.switchView("python")}

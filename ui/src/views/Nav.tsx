@@ -21,8 +21,6 @@ interface Props {
 
     splitview(): void;
 
-    zoomcontrols(): any;
-
     pyzoomin(): void;
 
     pyzoomout(): void;
@@ -134,7 +132,7 @@ export default class Nav extends Component<Props, {}> {
                         Blocks
                     </a>
                     <a class='tab-button icon-python toolbar-opacity' title='Settings' id="pythonview" href='javascript:void(0)' style="background-color: #4457A0;"
-                        onClick={() => this.props.zoomcontrols() && this.props.python() }>
+                        onClick={() => this.props.python() }>
                         Python
                     </a>
                     <a class='tab-button icon-view-mode toolbar-opacity' title='Settings' id="splitview" href='javascript:void(0)' style="background-color: #EB9A40;"

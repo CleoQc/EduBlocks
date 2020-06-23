@@ -343,7 +343,7 @@ table.primary td {
 }
 
 #workspace {
-    height: calc(100vh - 4.5em);
+    height: calc(100vh - 5.25em);
     position: relative;
     margin-top: 5.271em;
 }
@@ -452,7 +452,7 @@ table.primary td {
 #terminal-dialog {
     position: fixed;
     z-index: -1;
-    top: 59px;
+    top: 52px;
     right: 0px;
     bottom: 0px;
     line-height: 20px;
@@ -460,23 +460,15 @@ table.primary td {
     float: right;
 }
 
-
-.terminal-help {
-    height: 28px;
-    line-height: 28px;
-    padding: 0 4px;
-    background: white;
-}
-
-
-.terminal-help .help-item {
-    margin: 0 10px 0 0;
-}
-
-.terminal-help .key {
-    background: #ddd;
-    padding: 2px 3px;
-    border: solid 1px #777;
+#remote-terminal-dialog {
+    position: fixed;
+    z-index: -1;
+    top: 93px;
+    right: 0px;
+    bottom: 0px;
+    line-height: 20px;
+    width: 40%;
+    float: right;
 }
 
 
@@ -486,7 +478,7 @@ a {
 
 
 #term {
-    height: calc(100% - 28px);
+    height: 100%;
     background: #333;
 }
 
