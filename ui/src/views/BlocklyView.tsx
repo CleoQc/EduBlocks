@@ -72,8 +72,6 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
 
         this.xml = xml;
 
-        console.log("changing this.xml")
-
         if (!this.workspace!.isDragging()) {
           this.props.onChange(xml, python);
         }
@@ -83,8 +81,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       this.workspace.addChangeListener(Blockly.Events.disableOrphans);
 
       Blockly.svgResize(this.workspace);
-    
-      Blockly.Theme.BlockStyle.hat = true;
+
       Blockly.Generator.prototype.INDENT = '\t';
 
       var start_block = null;
@@ -98,8 +95,6 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       else {
         this.setXml(this.xml);
       }
-
-
     }
   }
 
