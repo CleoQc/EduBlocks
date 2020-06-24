@@ -66,7 +66,7 @@ export default class Nav extends Component<Props, {}> {
         return (
             <>
             <nav>
-                <a class='brand' onClick={() => this.props.modeQuestion()} data-tooltip='Change Mode'>
+                <a class='brand'>
                     {/* {this.props.platformImg && <img src={this.props.platformImg} class='Nav__platformImg' height={50}/>} */}
                     <img class='logo' src='https://i.ibb.co/2Zp0pyw/weblogo.png'/>
                 </a>
