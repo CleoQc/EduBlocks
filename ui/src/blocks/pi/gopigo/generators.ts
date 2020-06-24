@@ -1,4 +1,10 @@
 export default function define(Python: Blockly.BlockGenerators) {
+
+  Python['events_start_here'] = function (block) {
+    const code = '#!/usr/bin/python3"\n';
+    return code;
+  };
+
   Python['import_easygopigo3'] = function (block) {
     const code = 'from easygopigo3 import EasyGoPiGo3\n';
     return code;
@@ -115,7 +121,7 @@ export default function define(Python: Blockly.BlockGenerators) {
 // SENSORS
 //
 /////////////////////////////////////////////////////////////////////////
-Python['gpganalogdigital'] = function (block) {
+Python['gpganalogdigitalsensors'] = function (block) {
   const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('my_sensor'), Blockly.Variables.NAME_TYPE);
   const robot_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
   const dropdown_action = block.getFieldValue('action');
@@ -124,4 +130,32 @@ Python['gpganalogdigital'] = function (block) {
   return code;
 }; 
 
-}
+Python['gpgsensorread'] = function (block) {
+  const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('my_sensor'), Blockly.Variables.NAME_TYPE);
+  const code = variable_name + '.read()';
+  return [code, Blockly.Python.ORDER_ATOMIC]
+}; 
+
+/////////////////////////////////////////////////////////////////////////
+//
+// ACTUATORS
+//
+/////////////////////////////////////////////////////////////////////////
+Python['gpganalogdigitalactuators'] = function (block) {
+  const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('my_actuator'), Blockly.Variables.NAME_TYPE) ;
+  const robot_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
+  const dropdown_action = block.getFieldValue('action');
+  const dropdown_port = block.getFieldValue('port');
+  const code = variable_name + ' = ' + robot_name + '.' + dropdown_action + "('" + dropdown_port + "')\n";
+  return code;
+}; 
+
+Python['gpgactuatorwrite'] = function (block) {
+  const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('my_actuator'), Blockly.Variables.NAME_TYPE);
+  var text_bracket = Blockly.Python.valueToCode(block, 'actuator_value', Blockly.Python.ORDER_ATOMIC);
+
+  const code = variable_name + '.write(' + text_bracket + ')\n';
+  return code
+}; 
+
+}  // last curly bracket for export default function define(Python: Blockly.BlockGenerators)

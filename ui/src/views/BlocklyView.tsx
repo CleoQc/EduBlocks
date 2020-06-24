@@ -46,7 +46,11 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
 
 
       this.workspace = Blockly.inject(this.blocklyDiv, {
-
+        grid: {
+          spacing: 25,
+          length: 3,
+          colour: '#ccc',
+          snap: true},
         zoom:
         {
           controls: true,
@@ -68,18 +72,34 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
 
         this.xml = xml;
 
+        console.log("changing this.xml")
+
         if (!this.workspace!.isDragging()) {
           this.props.onChange(xml, python);
         }
       });
 
-      
+      // disable blocks that aren't attached to the start block
+      this.workspace.addChangeListener(Blockly.Events.disableOrphans);
 
       Blockly.svgResize(this.workspace);
-
+    
+      Blockly.Theme.BlockStyle.hat = true;
       Blockly.Generator.prototype.INDENT = '\t';
 
-      this.setXml(this.xml);
+      var start_block = null;
+      start_block = this.workspace.getBlockById("DI_start_here");
+      
+      if (start_block == null) {
+        var start_xml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="events_start_here" id="DI_start_here" x="'+ 100 + '" y="43" deletable="false" movable="false"></block></xml>';
+        Blockly.Xml.domToWorkspace(Blockly.Xml.textToDom(start_xml), this.workspace);
+        console.log("adding default block")
+      }
+      else {
+        this.setXml(this.xml);
+      }
+
+
     }
   }
 

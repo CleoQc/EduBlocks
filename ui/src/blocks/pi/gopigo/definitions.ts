@@ -4,6 +4,17 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   var bordercolour = "#999999";
   var inputcolour = "#CC3333";
 
+  Blockly.Blocks['events_start_here'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("#!/usr/bin/python3");
+      this.setNextStatement(true, null);
+      this.setColour("#F8CB3F");
+      // this.setTooltip(DexterMsg.Blockly.Blocks.Events.TOOLTIP_START_BLOCK);
+      // this.setHelpUrl('');
+    }
+  };
+
   Blocks['import_easygopigo3'] = {
     init: function () {
       this.appendDummyInput()
@@ -14,6 +25,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       // this.setTooltip('Imports the easygopigo3 library.');
     },
   };
+
   Blocks['gpgset'] = {
     init: function () {
       this.appendDummyInput()
@@ -163,8 +175,6 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     },
   };
 
-
-
   Blocks['gpgmovement_noarg'] = {
     init: function () {
       this.appendDummyInput()
@@ -267,8 +277,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   //
   /////////////////////////////////////////////////////////////////////////
 
-
-  Blocks['gpganalogdigital'] = {
+  Blocks['gpganalogdigitalsensors'] = {
     init: function () {
       this.appendDummyInput()
       .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
@@ -276,11 +285,9 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
         .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
         .appendField('.')
         .appendField(new Blockly.FieldDropdown([
+          ['init_button_sensor', 'init_button_sensor'],
           ['init_light_sensor', 'init_light_sensor'], 
           ['init_loudness_sensor', 'init_loudness_sensor'],
-          ['init_buzzer', 'init_buzzer'], 
-          ['init_led', 'init_led'],
-          ['init_button_sensor', 'init_button_sensor'], 
         ]), 'action')
         .appendField("(port='")
         .appendField(new Blockly.FieldDropdown([
@@ -297,7 +304,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     },
   };
 
-  Blocks['gpgread'] = {
+  Blocks['gpgsensorread'] = {
     init: function () {
       this.appendDummyInput()
         .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
@@ -310,5 +317,55 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       // this.setHelpUrl('');
     },
   };
-}
+
+  /////////////////////////////////////////////////////////////////////////
+  //
+  // ACTUATORS
+  //
+  /////////////////////////////////////////////////////////////////////////
+
+  Blocks['gpganalogdigitalactuators'] = {
+    init: function () {
+      this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable('my_actuator'), 'my_actuator')
+      .appendField(' = ')
+        .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
+        .appendField('.')
+        .appendField(new Blockly.FieldDropdown([
+          ['init_buzzer', 'init_buzzer'], 
+          ['init_led', 'init_led'],
+        ]), 'action')
+        .appendField("(port='")
+        .appendField(new Blockly.FieldDropdown([
+          ['AD1', 'AD1'], 
+          ['AD2', 'AD2'],
+        ]), 'port')
+        .appendField("')")
+        ;
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('Set gopigo movement');
+      // this.setHelpUrl('https://gpiozero.readthedocs.io/en/stable/api_input.html#light-sensor-ldr');
+    },
+  };
+
+  Blocks['gpgactuatorwrite'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable('my_actuator'), 'my_actuator')
+        .appendField('.write('); 
+      this.appendValueInput("actuator_value")
+        .setCheck(null);
+      this.appendDummyInput()
+        .appendField(')');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('negates a Boolean value');
+      // this.setHelpUrl('');
+    },
+  };
+
+}  // end of define
 
