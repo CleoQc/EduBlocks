@@ -7,7 +7,8 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   Blockly.Blocks['events_start_here'] = {
     init: function() {
       this.appendDummyInput()
-          .appendField("#!/usr/bin/python3");
+          .appendField("Start code"); 
+          // other option is "#!/usr/bin/python3"
       this.setNextStatement(true, null);
       this.setColour("#F8CB3F");
       // this.setTooltip(DexterMsg.Blockly.Blocks.Events.TOOLTIP_START_BLOCK);
@@ -22,7 +23,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
-      // this.setTooltip('Imports the easygopigo3 library.');
+      this.setTooltip('Imports the easygopigo3 library.');
     },
   };
 
@@ -38,7 +39,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);
-      // this.setTooltip('Set a variable for the GopiGo3');
+      this.setTooltip('Instantiate the GopiGo3 and set a variable for it');
       // this.setHelpUrl('https://gopigo3.readthedocs.io/en/master/api-basic/easygopigo3.html#easygopigo3.EasyGoPiGo3');
     },
   };

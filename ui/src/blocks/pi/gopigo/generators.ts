@@ -1,7 +1,7 @@
 export default function define(Python: Blockly.BlockGenerators) {
 
   Python['events_start_here'] = function (block) {
-    const code = '#!/usr/bin/python3"\n';
+    const code = '# Start code\n';
     return code;
   };
 
