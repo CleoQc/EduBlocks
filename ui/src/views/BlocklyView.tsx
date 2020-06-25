@@ -44,6 +44,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       }
       const toolbox = await getToolBoxXml(extensionsActive);
 
+      Blockly.BlockSvg.START_HAT = true;
 
       this.workspace = Blockly.inject(this.blocklyDiv, {
         grid: {
