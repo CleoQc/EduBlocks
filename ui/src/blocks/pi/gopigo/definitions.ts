@@ -4,18 +4,6 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   var bordercolour = "#999999";
   var inputcolour = "#CC3333";
 
-  Blockly.Blocks['events_start_here'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("Start code"); 
-          // other option is "#!/usr/bin/python3"
-      this.setNextStatement(true, null);
-      this.setColour("#F8CB3F");
-      // this.setTooltip(DexterMsg.Blockly.Blocks.Events.TOOLTIP_START_BLOCK);
-      // this.setHelpUrl('');
-    }
-  };
-
   Blocks['import_easygopigo3'] = {
     init: function () {
       this.appendDummyInput()
@@ -64,14 +52,13 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   Blocks['gpggetvolt'] = {
     init: function () {
       this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable('voltage'), 'voltage')
-        .appendField(' = ')
         .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
         .appendField('.volt()')
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
+        this.setInputsInline(true);
+        this.setOutput(true, null);
+        this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setColour(maincolour, inputcolour, bordercolour);
-      this.setTooltip('Get GopiGo3 speed');
+      this.setTooltip('Get GopiGo3 overall voltage');
       // this.setHelpUrl('https://gopigo3.readthedocs.io/en/master/api-basic/easygopigo3.html#easygopigo3.EasyGoPiGo3');
     },
   };
@@ -92,12 +79,11 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   Blocks['gpggetspeed'] = {
     init: function () {
       this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable('speed'), 'speed')
-        .appendField(' = ')
         .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
         .appendField('.get_speed()')
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
+        this.setInputsInline(true);
+        this.setOutput(true, null);
+        this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setColour(maincolour, inputcolour, bordercolour);
       this.setTooltip('Get GopiGo3 speed');
       // this.setHelpUrl('https://gopigo3.readthedocs.io/en/master/api-basic/easygopigo3.html#easygopigo3.EasyGoPiGo3');
@@ -308,8 +294,55 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   Blocks['gpgsensorread'] = {
     init: function () {
       this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
+        .appendField(new Blockly.FieldVariable('simple_sensor'), 'simple_sensor')
         .appendField('.read()'); 
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('negates a Boolean value');
+      // this.setHelpUrl('');
+    },
+  };
+
+  Blocks['gpgdextersensors'] = {
+    init: function () {
+      this.appendDummyInput()
+      .appendField(new Blockly.FieldVariable('dex_sensor'), 'dex_sensor')
+      .appendField(' = ')
+        .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
+        .appendField('.')
+        .appendField(new Blockly.FieldDropdown([
+          ['init_distance_sensor', 'init_distance_sensor'],
+          ['init_imu_sensor', 'init_imu_sensor'], 
+          ['init_light_color_sensor', 'init_light_color_sensor'],
+          ['init_line_follower', 'init_line_follower'], 
+        ]), 'action')
+        .appendField("(port='")
+        .appendField(new Blockly.FieldDropdown([
+          ['I2C', 'I2C'], 
+          ['AD1', 'AD1'], 
+          ['AD2', 'AD2'],
+        ]), 'port')
+        .appendField("')")
+        ;
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('Set gopigo movement');
+      // this.setHelpUrl('https://gpiozero.readthedocs.io/en/stable/api_input.html#light-sensor-ldr');
+    },
+  };
+
+  Blocks['gpgdistanceread'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable('dex_sensor'), 'dex_sensor')
+        .appendField(new Blockly.FieldDropdown([
+          ['read()', 'read()'], 
+          ['read_inches()', 'read_inches()'], 
+          ['read_mm()', 'read_mm()'],
+        ]), 'action'); 
       this.setInputsInline(true);
       this.setOutput(true, null);
       this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
