@@ -1,8 +1,10 @@
 <category name="gpiozero" colour="#E4E436" iconclass="blocklyTreeIconCustom gpio">
+  <sep></sep>
   <category name="General" colour="#E4E436">
     <block type="importgpiozero"></block>
     <block type="importtime"></block>
   </category>
+  <sep></sep>
   <category name="Inputs" colour="#16AEE5">
     <category name="Button" colour="#16AEE5">
       <block type="buttonset">
@@ -145,6 +147,7 @@
       </block>
     </category>
   </category>
+  <sep></sep>
   <category name="Outputs" colour="#E51616">
     <category name="LED" colour="#E51616">
       <block type="ledset">
@@ -343,6 +346,7 @@
       </block>
     </category>
   </category>
+  <sep></sep>
   <category name="Boards &amp; Accessories" colour="#E5B116">
     <category name="LEDBoard" colour="#E5B116">
       <block type="ledbset">
@@ -513,6 +517,7 @@
       </block>
     </category>
   </category>
+  <sep></sep>
   <category name="Internal &amp; SPI Devices" colour="#16E57E">
     <category name="Time Of Day" colour="#16E57E">
       <block type="timeset">
@@ -561,4 +566,5 @@
       </block>
     </category>
   </category>
+  <sep></sep>
 </category>

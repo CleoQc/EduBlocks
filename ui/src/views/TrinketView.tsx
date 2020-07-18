@@ -1,5 +1,6 @@
 import React = require('preact');
 import { Component } from 'preact';
+import fs = require('fs');
 
 interface Props {
   visible: boolean;
@@ -24,6 +25,7 @@ export default class TrinketView extends Component<Props, {}> {
 
   public componentDidMount() {
     window.addEventListener('keydown', this.escapeListener);
+    
   }
 
   public componentDidUpdate() {
@@ -37,7 +39,25 @@ export default class TrinketView extends Component<Props, {}> {
   private getEscapedCode() {
     console.log(this.props.pythonCode);
 
-    return encodeURIComponent(this.props.pythonCode);
+    let newpy = this.props.pythonCode;
+    let mlmodel = "";
+    let mltext = "";
+    let usrbin = "#!/usr/bin/python3 \n"
+
+    newpy = newpy.replace('from mltext import *', '');
+    newpy = newpy.replace('from mlmodel import *', '');
+
+    if (this.props.pythonCode.indexOf("from mltext import *") !== -1){
+      mltext = fs.readFileSync("mltext.py", "utf8") + "\n";
+    }
+
+    if (this.props.pythonCode.indexOf("from mlmodel import *") !== -1){
+      mlmodel = fs.readFileSync("mlmodel.py", "utf8") + "\n";
+    }
+
+    console.log(mlmodel + mltext + newpy); 
+
+    return encodeURIComponent(usrbin + mlmodel + mltext + newpy);
   }
 
   public close() {
@@ -54,14 +74,15 @@ export default class TrinketView extends Component<Props, {}> {
           {this.props.visible && 
             <iframe
               frameBorder={0}
-              src={`https://trinket.io/tools/1.0/jekyll/embed/python3?runOption=run&outputOnly=true&start=result#code=${this.getEscapedCode()}`}
+              id="trinket"
+              src={`https://trinket.io/tools/1.0/jekyll/embed/python?runOption=run&outputOnly=true&start=result#code=${this.getEscapedCode()}`}
             />
           }
-
-          {this.props.turtle &&
+          {this.props.turtle && 
             <iframe
               frameBorder={0}
-              src={`https://trinket.io/tools/1.0/jekyll/embed/python?runOption=run&outputOnly=true&start=result#code=${this.getEscapedCode()}`}
+              id="trinket"
+              src={`https://trinket.io/tools/1.0/jekyll/embed/python3?runOption=run&outputOnly=true&start=result#code=${this.getEscapedCode()}`}
             />
           }
         </div>

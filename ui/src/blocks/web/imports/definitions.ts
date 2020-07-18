@@ -1,5 +1,43 @@
 export default function define(Blocks: Blockly.BlockDefinitions) {
 
+  Blocks['events_start_here'] = { 
+    init: function() {
+      this.appendDummyInput()
+          .appendField("# Start Code Here"); 
+          // other option is "#!/usr/bin/python3"
+      this.setNextStatement(true, null);
+      this.setColour("#F8CB3F");
+      Blockly.BlockSvg.START_HAT = true;
+      // this.setTooltip(DexterMsg.Blockly.Blocks.Events.TOOLTIP_START_BLOCK);
+      // this.setHelpUrl('');
+    }
+  };
+
+
+  Blocks['import_mlmodel'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField('from mlmodel import *');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#ff0066");
+      this.setTooltip('Imports the mlmodel library.');
+      this.setHelpUrl('');
+    },
+  };
+
+  Blocks['import_mltext'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField('from mltext import *');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour("#ff0066");
+      this.setTooltip('Imports the mltext library.');
+      this.setHelpUrl('');
+    },
+  };
+
   
   Blocks['import_time'] = {
     init: function () {

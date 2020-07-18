@@ -25,13 +25,8 @@ export default class LoadModal<T extends LoadModalOption> extends Component<Load
       <div class='modal'>
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
         <label for='modal_1' class='overlay'></label>
-        <article class="AlertModel__container" style="background-color: white !important;"> 
-          <header class="SelectModal__header">
-            <h3>{this.props.title}</h3>
-            <a class='SelectModal__close close' onClick={() => this.props.onButtonClick('close')}>&times;</a>
-          </header>
-
-          <section class='SelectModel__content' style="margin-top: 5px; margin-bottom: 20px;" id="modaltext">
+        <article style="border-radius: 50%; background-color: #1B173D !important; padding: 16px;"> 
+          <section style="padding: 0px !important;" id="modaltext">
             <div class="loader" style="margin: 0 auto;"></div>
           </section>
         </article>

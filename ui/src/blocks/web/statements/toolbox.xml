@@ -101,6 +101,13 @@
       </shadow>
     </value>
   </block>
+  <block type="brackets">
+    <value name="NAME">
+      <shadow type="textinline">
+        <field name="text">1</field>
+      </shadow>
+    </value>
+  </block>
   <block type="stringinline"></block>
   <block type="textinline"></block>
 </category>

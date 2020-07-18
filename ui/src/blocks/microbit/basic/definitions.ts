@@ -3,6 +3,20 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   var maincolour = "#ff0066";
   var bordercolour = "#b3235a";
   var inputcolour = "#ff0066";
+
+  Blocks['events_start_here'] = { 
+    init: function() {
+      this.appendDummyInput()
+          .appendField("# Start code here"); 
+          // other option is "#!/usr/bin/python3"
+      this.setNextStatement(true, null);
+      this.setColour("#F8CB3F");
+      Blockly.BlockSvg.START_HAT = true;
+      // this.setTooltip(DexterMsg.Blockly.Blocks.Events.TOOLTIP_START_BLOCK);
+      // this.setHelpUrl('');
+    }
+  };
+
   Blocks['import_microbit'] = {
     init: function () {
       this.appendDummyInput()

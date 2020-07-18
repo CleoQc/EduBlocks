@@ -1447,9 +1447,14 @@ declare module Blockly.Events {
 declare module Blockly {
 
     class BlockSvg extends BlockSvg__Class {
+<<<<<<< HEAD
         static START_HAT: boolean;
     }
     
+=======
+      static START_HAT: boolean;
+}
+>>>>>>> dabce0f74943496430979840ec9ba5cc35acbf8c
     /** Fake class which should be extended to avoid inheriting static properties */
     class BlockSvg__Class extends Blockly.Block__Class  { 
     
@@ -9833,7 +9838,9 @@ declare module Blockly.WidgetDiv {
 
 declare module Blockly {
 
-    class Workspace extends Workspace__Class { }
+    class Workspace extends Workspace__Class {
+      svgBlockCanvas_: any;
+}
     /** Fake class which should be extended to avoid inheriting static properties */
     class Workspace__Class  { 
     

@@ -43,6 +43,12 @@ export interface PlatformSelection {
   help: string;
 }
 
+export interface ShareSelection {
+  func: any;
+  title: string;
+  image: string;
+}
+
 export interface PlatformInterface {
   key: Platform;
   name: string;

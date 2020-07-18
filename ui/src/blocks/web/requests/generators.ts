@@ -17,6 +17,15 @@ export default function define(Python: Blockly.BlockGenerators) {
     return code;
   };
 
+  Python['json_reference'] = function(block) {
+    var variable_r = Blockly.Python.variableDB_.getName(block.getFieldValue('r'), Blockly.Variables.NAME_TYPE);
+    var value_input = Blockly.Python.valueToCode(block, 'input', Blockly.Python.ORDER_ATOMIC);
+    // TODO: Assemble Python into code variable.
+    var code = variable_r + '.json()[' + value_input + ']';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  };
+
   Python['requests_post'] = function (block) {
     var variable_r = Blockly.Python.variableDB_.getName(block.getFieldValue('r'), Blockly.Variables.NAME_TYPE);
     var value_text = Blockly.Python.valueToCode(block, 'text', Blockly.Python.ORDER_ATOMIC);
@@ -64,6 +73,15 @@ export default function define(Python: Blockly.BlockGenerators) {
     var code = variable_r + '.' + dropdown_name;
     // TODO: Change ORDER_NONE to the correct strength.
     return [code, Blockly.Python.ORDER_ATOMIC];
+  };
+
+  Python['requests_url_func'] = function (block) {
+    var variable_r = Blockly.Python.variableDB_.getName(block.getFieldValue('r'), Blockly.Variables.NAME_TYPE);
+    var dropdown_name = block.getFieldValue('NAME');
+    // TODO: Assemble Python into code variable.
+    var code = variable_r + '.' + dropdown_name + "()\n";
+    // TODO: Change ORDER_NONE to the correct strength.
+    return code;
   };
 
 

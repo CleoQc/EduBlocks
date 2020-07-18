@@ -2,14 +2,13 @@ import React = require('preact');
 import {Component} from 'preact';
 // import Auth from './Auth';
 import {navLabels} from './Page';
-import { GlobalVars } from './Page';
 
 interface Props {
     platformImg?: string;
 
     openSamples(): void;
 
-    openExtensions?(): void;
+    openExtensions(): void;
 
     openThemes(): void;
 
@@ -20,8 +19,6 @@ interface Props {
     python(): void;
 
     splitview(): void;
-
-    zoomcontrols(): any;
 
     pyzoomin(): void;
 
@@ -61,7 +58,7 @@ interface Props {
 
 export default class Nav extends Component<Props, {}> {
     public render() {
-        const {downloadHex, openTerminal: sendCode, downloadPython, flashHex, closeTerminal} = this.props;
+        const {downloadHex, openTerminal: sendCode, downloadPython, flashHex, closeTerminal, openExtensions} = this.props;
 
         return (
             <>
@@ -79,14 +76,19 @@ export default class Nav extends Component<Props, {}> {
                     {navLabels[2]}
                 </a>
 
-                <a class='button icon-share margin-button button' title='Save a file' href='javascript:void(0)'
+                <a class='button icon-share margin-button button' id="nav_share" title='Save a file' href='javascript:void(0)'
                     onClick={() => this.props.share()}>
                     Share
                 </a>
 
-                <a class='button icon-folder-open margin-button' title='Open a file' href='javascript:void(0)'
+                <a class='button icon-folder-open margin-button' id="nav_open" title='Open a file' href='javascript:void(0)'
                     onClick={() => this.props.openCode()}>
-                    {GlobalVars.openFiles}
+                    Open
+                </a>
+
+                <a class='button icon-folder-open margin-button' id="nav_files" title='Open a file' href='javascript:void(0)'
+                    onClick={() => this.props.openCode()}>
+                    Files
                 </a>
 
                 <a class='button icon-plus margin-button' id="new" title='Create new file' href='javascript:void(0)'
@@ -128,17 +130,17 @@ export default class Nav extends Component<Props, {}> {
 
             <div class="toolbar">
                 <div class="toolbar-column">
+                    <a class='tab-button icon-view-mode toolbar-opacity' title='Settings' id="splitview" href='javascript:void(0)' style="background-color: #EB9A40;"
+                        onClick={() => this.props.splitview()}>
+                        Split 
+                    </a>
                     <a class='tab-button icon-blocks toolbar-opacity' id="blocksview" title='Settings' href='javascript:void(0)' style="background-color: #D63664;"
                         onClick={() => this.props.blocks()}>
                         Blocks
                     </a>
                     <a class='tab-button icon-python toolbar-opacity' title='Settings' id="pythonview" href='javascript:void(0)' style="background-color: #4457A0;"
-                        onClick={() => this.props.zoomcontrols() && this.props.python() }>
+                        onClick={() => this.props.python() }>
                         Python
-                    </a>
-                    <a class='tab-button icon-view-mode toolbar-opacity' title='Settings' id="splitview" href='javascript:void(0)' style="background-color: #EB9A40;"
-                        onClick={() => this.props.splitview()}>
-                        Split 
                     </a>
                 </div>
                 <div class="toolbar-column">
@@ -159,14 +161,21 @@ export default class Nav extends Component<Props, {}> {
                     {downloadHex &&
                     <a class='button icon-flash button-green' id="HexFlashButton" title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 0px !important; background-color: #644A9E !important;"
                        onClick={() => flashHex()}>
-                        Flash Hex
+                        Flash
                     </a>
                     }      
 
                     {downloadHex &&
-                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important; margin-left: 10px;"
+                    <a class='button icon-download button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-right: 12px !important;"
                        onClick={() => downloadHex()}>
                         {navLabels[8]}
+                    </a>
+                    }   
+
+                    {downloadHex &&
+                    <a class='button icon-puzzle button-green' title='Download file to flash to micro:bit' href='javascript:void(0)' style="float:right; margin-left: 10px; background-color: #D63664 !important;" 
+                       onClick={() => openExtensions()}>
+                        Extensions
                     </a>
                     }   
 
@@ -188,6 +197,9 @@ export default class Nav extends Component<Props, {}> {
                     </a>
                 </div>
                 
+            </div>
+            <div id="video-container">
+                <video id="video" autoPlay></video>
             </div>
             
             </>

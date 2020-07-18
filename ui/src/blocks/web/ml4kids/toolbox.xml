@@ -1,0 +1,70 @@
+<category name="ML For Kids" colour="#70CBCC" iconclass="blocklyTreeIconCustom graphs">
+	
+  <label text="Machine Learning" web-class="myLabelStyle"></label>
+
+	<block type="api_key">
+		<value name="key">
+			<shadow type="stringinline">
+				<field name="text">API Key Here</field>
+			</shadow>
+		</value>
+	</block>
+
+  <block type="key_inline"></block>
+
+	<block type="check_model">
+		<value name="key">
+			<shadow type="stringinline">
+				<field name="text">API Key Here</field>
+			</shadow>
+		</value>
+	</block>
+
+  <block type="status_var"></block>
+
+  <block type="classify">
+		<value name="key">
+			<shadow type="stringinline">
+				<field name="text">API Key Here</field>
+			</shadow>
+		</value>
+    <value name="text">
+			<shadow type="stringinline">
+				<field name="text">Text to test</field>
+			</shadow>
+		</value>
+	</block>
+
+  <block type="class_name"></block>
+
+  <block type="confidence"></block>
+
+  <block type="text_item"></block>
+
+  <block type="store_text">
+		<value name="key">
+			<shadow type="stringinline">
+				<field name="text">API Key Here</field>
+			</shadow>
+		</value>
+    <value name="text">
+			<shadow type="stringinline">
+				<field name="text">Text</field>
+			</shadow>
+		</value>
+    <value name="label">
+			<shadow type="stringinline">
+				<field name="text">Label</field>
+			</shadow>
+		</value>
+	</block>
+
+  <block type="train_model">
+		<value name="key">
+			<shadow type="stringinline">
+				<field name="text">API Key Here</field>
+			</shadow>
+		</value>
+	</block>
+
+</category>

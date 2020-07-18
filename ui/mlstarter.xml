@@ -1,0 +1,27 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="j+qMGSNcItv]+y(4~wf=">status</variable>
+    <variable id="KuJJhJoB{Mm3:t,(s*-N">test_text</variable>
+    <variable id="R%9%x2C8=r[@w7ZPB`by">headline</variable>
+    <variable id="_ytwyy~d)E[0h_76h_GV">demo</variable>
+  </variables>
+  <block type="events_start_here" id="DI_start_here" deletable="false" movable="false" x="100" y="43">
+    <next>
+      <block type="import_mlmodel" id="JALzf-sDCOlo:81zK}S?">
+        <next>
+          <block type="import_mltext" id="4P=cX`;Xz!vcHK{4v2e!">
+            <next>
+              <block type="api_key" id="_w1fCAu#yuG9)78jegdv">
+                <value name="key">
+                  <shadow type="stringinline" id="An.LFukp?jzQl33o/%4d">
+                    <field name="text">KEYHERE</field>
+                  </shadow>
+                </value>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

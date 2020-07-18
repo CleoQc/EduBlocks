@@ -7,5 +7,7 @@
   <block type="random"></block>
   <block type="import_pygal"></block>
   <block type="import_processing"></block>
+  <block type="import_mlmodel"></block>
+  <block type="import_mltext"></block>
 
 </category>

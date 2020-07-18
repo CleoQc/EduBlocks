@@ -78,6 +78,22 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     },
   };
 
+  Blocks['brackets'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("(");
+      this.appendValueInput("NAME")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(")");
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setColour('#F89621');
+   this.setTooltip("Brackets");
+   this.setHelpUrl("");
+    }
+  };
+
   Blocks['global'] = {
     init: function () {
       this.appendDummyInput()

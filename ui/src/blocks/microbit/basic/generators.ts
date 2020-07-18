@@ -4,6 +4,11 @@ export default function define(Python: Blockly.BlockGenerators) {
     return code;
   };
 
+  Python['events_start_here'] = function (block) {
+    const code = '# Start code here\n';
+    return code;
+  };
+
   Python['import_signal'] = function (block) {
     const code = 'from signal import pause\n';
     return code;

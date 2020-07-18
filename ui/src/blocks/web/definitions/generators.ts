@@ -11,6 +11,15 @@ export default function define(Python: Blockly.BlockGenerators) {
     return code;
   };
 
+  Python['inline_def'] = function(block) {
+    var value_def = Blockly.Python.valueToCode(block, 'def', Blockly.Python.ORDER_ATOMIC);
+    var value_input = Blockly.Python.valueToCode(block, 'input', Blockly.Python.ORDER_ATOMIC);
+    // TODO: Assemble Python into code variable.
+    var code = value_def + '(' +value_input+ ')';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  };
+
   Python['webreturn2'] = function (block) {
     const text_return = Blockly.Python.valueToCode(block, 'return', Blockly.Python.ORDER_ATOMIC)
     // TODO: Assemble Python into code variable.

@@ -1,37 +1,35 @@
 import React = require('preact');
 import { Component } from 'preact';
-import {generic} from './Page';
+import {generic} from '../Page';
 
-interface FirebaseSelectModalProps<T extends FirebaseSelectModalOption> {
+interface SelectModalProps<T extends SelectModalOption> {
   title: string;
   selectLabel: string;
   visible: boolean;
 
-  buttons: FirebaseSelectModalButton[];
+  buttons: SelectModalButton[];
   options: T[];
 
   onButtonClick(key: string): void;
   onSelect(option: T): void;
-  onDelete(option: T): void;
-  onShare(option: T): void;
 }
 
-interface FirebaseSelectModalState {
+interface SelectModalState {
 
 }
 
-export interface FirebaseSelectModalOption {
+export interface SelectModalOption {
   label: string;
 }
 
-export interface FirebaseSelectModalButton {
+export interface SelectModalButton {
   key: string;
   label: string;
   position: 'left' | 'right';
 }
 
-export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> extends Component<FirebaseSelectModalProps<T>, FirebaseSelectModalState> {
-  private getButtons(): FirebaseSelectModalButton[] {
+export default class SelectModal<T extends SelectModalOption> extends Component<SelectModalProps<T>, SelectModalState> {
+  private getButtons(): SelectModalButton[] {
     return [
       ...this.props.buttons,
       { key: 'close', label: 'Close', position: 'right' },
@@ -44,14 +42,12 @@ export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> ex
         <span>{option.label}</span>
       </div>,
       <div class='SelectModal__cell SelectModal__cell--action'>
-        {/* <button style="background-color: #49B04D" id="sharebutton" class="buttonMenu icon-share" onClick={() => this.props.onShare(option)}>{navLabels[11]}</button> */}
-        <button class="buttonMenu error" id="deletebutton" onClick={() => this.props.onDelete(option)}>{generic[4]}</button>
-        <button onClick={() => this.props.onSelect(option)}>{generic[0]}</button>
+        <button onClick={() => this.props.onSelect(option)}>{this.props.selectLabel}</button>
       </div>,
     ]));
 
     return (
-      <div class='SelectModal modal' style="min-width: 60%">
+      <div class='SelectModal modal'>
 
         <input id='modal_1' type='checkbox' disabled={true} checked={this.props.visible} />
 
@@ -60,7 +56,7 @@ export default class FirebaseSelectModal<T extends FirebaseSelectModalOption> ex
         <article class='SelectModel__container'>
 
           <header class='SelectModal__header'>
-            <h3>{generic[12]}</h3>
+            <h3>{this.props.title}</h3>
             <a class='SelectModal__close close' onClick={() => this.props.onButtonClick('close')}>&times;</a>
           </header>
 

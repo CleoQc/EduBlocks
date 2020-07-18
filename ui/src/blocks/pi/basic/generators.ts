@@ -8,7 +8,7 @@ export default function define(Python: Blockly.BlockGenerators) {
   Python['import_time'] = function (block) {
     const code = 'import time\n';
     return code;
-  };
+  }; 
 
   Python['import_signal'] = function (block) {
     const code = 'from signal import pause\n';

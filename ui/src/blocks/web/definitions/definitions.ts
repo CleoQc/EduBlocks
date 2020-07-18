@@ -22,6 +22,24 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     },
   };
 
+  Blocks['inline_def'] = {
+    init: function() {
+      this.appendValueInput("def")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField("(");
+      this.appendValueInput("input")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(")");
+      this.setOutput(true, null);
+      this.setColour("#CDDA36");
+   this.setTooltip("");
+   this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND)
+   this.setHelpUrl("");
+    }
+  };
+
   Blocks['self'] = {
     init: function() {
       this.appendDummyInput()

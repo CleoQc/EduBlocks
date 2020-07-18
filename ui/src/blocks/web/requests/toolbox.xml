@@ -4,8 +4,8 @@
   <block type="import_json"></block>
   <block type="requests_get">
     <value name="text">
-      <shadow type="textinline">
-        <field name="text">'https://api.github.com/events'</field>
+      <shadow type="stringinline">
+        <field name="text">https://api.github.com/events</field>
       </shadow>
     </value>
   </block>
@@ -45,10 +45,18 @@
     </value>
   </block>
   <block type="requests_url"></block>
+  <block type="requests_url_func"></block>
   <block type="requests_cookies">
     <value name="text">
       <shadow type="textinline">
         <field name="text">'example_cookie_name</field>
+      </shadow>
+    </value>
+  </block>
+  <block type="json_reference">
+    <value name="input">
+      <shadow type="stringinline">
+        <field name="text">name</field>
       </shadow>
     </value>
   </block>
