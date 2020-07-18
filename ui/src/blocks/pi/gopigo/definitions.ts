@@ -267,7 +267,7 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   Blocks['gpganalogdigitalsensors'] = {
     init: function () {
       this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
+      .appendField(new Blockly.FieldVariable('simple_sensor'), 'simple_sensor')
       .appendField(' = ')
         .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
         .appendField('.')
@@ -351,6 +351,45 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
       // this.setHelpUrl('');
     },
   };
+
+  Blocks['gpglinefollowerread'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable('dex_sensor'), 'dex_sensor')
+        .appendField(new Blockly.FieldDropdown([
+          ['position()', 'position()'], 
+          ['position_bw()', 'position_bw()'], 
+          ['position_01()', 'position_01()'],
+          ['position_val()', 'position_val()'],
+        ]), 'action'); 
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('negates a Boolean value');
+      // this.setHelpUrl('');
+    },
+  };
+
+  Blocks['gpglinefollowersetcalibration'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable('dex_sensor'), 'dex_sensor')
+        .appendField('.set_calibration(')
+        .appendField(new Blockly.FieldDropdown([
+          ['white', 'white'], 
+          ['black', 'black'], 
+        ]), 'action'); 
+      this.appendDummyInput()
+        .appendField(')')
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('negates a Boolean value');
+      // this.setHelpUrl('');
+    },
+  };
+
 
   /////////////////////////////////////////////////////////////////////////
   //

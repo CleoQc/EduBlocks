@@ -68,15 +68,15 @@
   <block type="gpgblinkers"></block>
 </category>
 
-<category name="GoPiGo Servos" colour="#CC3333" iconclass="blocklyTreeIconCustom servo">
-</category>
-
 <category name="GoPiGo Sensors" colour="#CC3333" iconclass="blocklyTreeIconCustom sensor">
   <label text="Init" web-class="myLabelStyle"></label>
   <block type="gpgdextersensors"></block>
   <block type="gpganalogdigitalsensors"></block>
   <label text="Distance sensor" web-class="myLabelStyle"></label>
   <block type="gpgdistanceread"></block>
+  <label text="Line Follower" web-class="myLabelStyle"></label>
+  <block type="gpglinefollowerread"></block>
+  <block type="gpglinefollowersetcalibration"></block>
   <label text="Button, simple light sensor, loudness sensor" web-class="myLabelStyle"></label>
   <block type="gpgsensorread"></block>
 </category>

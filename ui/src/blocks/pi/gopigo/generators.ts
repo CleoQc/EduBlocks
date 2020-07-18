@@ -120,7 +120,7 @@ export default function define(Python: Blockly.BlockGenerators) {
 //
 /////////////////////////////////////////////////////////////////////////
 Python['gpganalogdigitalsensors'] = function (block) {
-  const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('my_sensor'), Blockly.Variables.NAME_TYPE);
+  const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('simple_sensor'), Blockly.Variables.NAME_TYPE);
   const robot_name = Blockly.Python.variableDB_.getName(block.getFieldValue('gpg'), Blockly.Variables.NAME_TYPE);
   const dropdown_action = block.getFieldValue('action');
   const dropdown_port = block.getFieldValue('port');
@@ -148,6 +148,20 @@ Python['gpgdistanceread'] = function (block) {
   const dropdown_action = block.getFieldValue('action');
   const code = variable_name + '.' + dropdown_action;
   return [code, Blockly.Python.ORDER_ATOMIC]
+}; 
+
+Python['gpglinefollowerread'] = function (block) {
+  const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('dex_sensor'), Blockly.Variables.NAME_TYPE);
+  const dropdown_action = block.getFieldValue('action');
+  const code = variable_name + '.' + dropdown_action;
+  return [code, Blockly.Python.ORDER_ATOMIC]
+}; 
+
+Python['gpglinefollowersetcalibration'] = function (block) {
+  const variable_name = Blockly.Python.variableDB_.getName(block.getFieldValue('dex_sensor'), Blockly.Variables.NAME_TYPE);
+  const dropdown_action = block.getFieldValue('action');
+  const code = variable_name + 'set_calibration(' + dropdown_action + ')\n';
+  return code
 }; 
 
 /////////////////////////////////////////////////////////////////////////
