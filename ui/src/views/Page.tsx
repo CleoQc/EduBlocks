@@ -3,8 +3,9 @@ import { Component } from 'preact';
 import { getPlatform, getPlatformList } from '../platforms';
 import { App, Capability, Extension, Platform, PlatformInterface } from '../types';
 import * as firebase from 'firebase/app';
-import { AuthModal } from './Auth';
+// import { AuthModal } from './Auth';
 import AlertModal from './modals/AlertModal';
+
 
 /// <reference path="screenshot.d.ts" />
 
@@ -229,9 +230,9 @@ export default class Page extends Component<Props, State> {
 
 
 
-    public componentDidMount() {
-	this.selectPlatform("RaspberryPi");
-        let currentTheme = Cookies.get("theme")
+    public async componentDidMount() {
+        this.selectPlatform("RaspberryPi");
+        let currentTheme = Cookies.get("theme");
         this.activeButton("blocks");
 
         $(function () {
@@ -279,21 +280,21 @@ export default class Page extends Component<Props, State> {
         var locURL = window.location.href.toString();
 
         if (locURL.indexOf('#share') >= 0) {
-            if (locURL.indexOf('?Python') >= 0) {
-                this.selectPlatform("Python");
-            }
+            // if (locURL.indexOf('?Python') >= 0) {
+            //     this.selectPlatform("Python");
+            // }
 
-            if (locURL.indexOf('?MicroBit') >= 0) {
-                this.selectPlatform("MicroBit");
-            }
+            // if (locURL.indexOf('?MicroBit') >= 0) {
+            //     this.selectPlatform("MicroBit");
+            // }
 
-            if (locURL.indexOf('?CircuitPython') >= 0) {
-                this.selectPlatform("CircuitPython");
-            }
+            // if (locURL.indexOf('?CircuitPython') >= 0) {
+            //     this.selectPlatform("CircuitPython");
+            // }
 
-            if (locURL.indexOf('?RaspberryPi') >= 0) {
+            // if (locURL.indexOf('?RaspberryPi') >= 0) {
                 this.selectPlatform("RaspberryPi");
-            }
+            // }
 
             let self = this;
             var loadShareURL = window.location.href.substring(window.location.href.lastIndexOf("?") + 1);
@@ -313,9 +314,10 @@ export default class Page extends Component<Props, State> {
 
         }
 
-        await this.splitView(true);
+        await this.splitView(false);
 
-        await this.activeButton("split");
+        await this.activeButton("blocks");
+        await this.switchView("blocks")
 
         await this.setState({ modal: "platform" });
 
@@ -329,6 +331,26 @@ export default class Page extends Component<Props, State> {
         }
         }
         catch(e){console.log("Platform not found")} */
+
+        if (locURL.indexOf('#mlstarter') >= 0) {
+            this.selectPlatform("Python");
+            let self = this;
+
+            const xhr = new XMLHttpRequest();
+            xhr.responseType = 'text';
+            xhr.onload = function (event) {
+                let mlfile = xhr.responseText;
+                let apikey = window.location.href.substring(window.location.href.lastIndexOf("?") + 1);
+                let keytext = '<field name="text">' + apikey + '</field>';
+                mlfile = mlfile.replace('<field name="text">KEYHERE</field>', keytext);
+                self.readBlocklyContents(mlfile);
+            };
+            xhr.open('GET', "https://firebasestorage.googleapis.com/v0/b/edublocks-38d74.appspot.com/o/blocks%2FKxirQcjaclMBi3dv0D2bI7GZnXt1%2FML%20Starter%20(Python)?alt=media&token=e2e3da3e-9533-4ca8-873f-759d00a6097a");
+            xhr.send();
+            this.setState({ modal: null });
+
+            this.delay(400);
+        }
 
         if (locURL.indexOf('#mlstarter') >= 0) {
             this.selectPlatform("Python");
