@@ -110,7 +110,6 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
           ['True', 'True'], 
           ['False', 'False'],
         ]), 'blocking')
-      this.appendDummyInput()
         .appendField(')');
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
@@ -127,9 +126,9 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
         .appendField('.steer(left_percent=')
       this.appendValueInput("value1")
         .setCheck(null)
-        this.appendDummyInput()
-          .appendField(', right_percent=')
-        this.appendValueInput("value2")
+      this.appendDummyInput()
+        .appendField(', right_percent=')
+      this.appendValueInput("value2")
         .setCheck(null)
       this.appendDummyInput()
         .appendField(')');
@@ -264,10 +263,10 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   //
   /////////////////////////////////////////////////////////////////////////
 
-  Blocks['gpganalogdigitalsensors'] = {
+  Blocks['gpgsensor'] = {
     init: function () {
       this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('simple_sensor'), 'simple_sensor')
+      .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
       .appendField(' = ')
         .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
         .appendField('.')
@@ -275,44 +274,6 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
           ['init_button_sensor', 'init_button_sensor'],
           ['init_light_sensor', 'init_light_sensor'], 
           ['init_loudness_sensor', 'init_loudness_sensor'],
-        ]), 'action')
-        .appendField("(port='")
-        .appendField(new Blockly.FieldDropdown([
-          ['AD1', 'AD1'], 
-          ['AD2', 'AD2'],
-        ]), 'port')
-        .appendField("')")
-        ;
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(maincolour, inputcolour, bordercolour);
-      // this.setTooltip('Set gopigo movement');
-      // this.setHelpUrl('https://gpiozero.readthedocs.io/en/stable/api_input.html#light-sensor-ldr');
-    },
-  };
-
-  Blocks['gpgsensorread'] = {
-    init: function () {
-      this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable('simple_sensor'), 'simple_sensor')
-        .appendField('.read()'); 
-      this.setInputsInline(true);
-      this.setOutput(true, null);
-      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
-      this.setColour(maincolour, inputcolour, bordercolour);
-      // this.setTooltip('negates a Boolean value');
-      // this.setHelpUrl('');
-    },
-  };
-
-  Blocks['gpgdextersensors'] = {
-    init: function () {
-      this.appendDummyInput()
-      .appendField(new Blockly.FieldVariable('dex_sensor'), 'dex_sensor')
-      .appendField(' = ')
-        .appendField(new Blockly.FieldVariable('gpg'), 'gpg')
-        .appendField('.')
-        .appendField(new Blockly.FieldDropdown([
           ['init_distance_sensor', 'init_distance_sensor'],
           ['init_imu_sensor', 'init_imu_sensor'], 
           ['init_light_color_sensor', 'init_light_color_sensor'],
@@ -334,29 +295,15 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     },
   };
 
-  Blocks['gpgdistanceread'] = {
+  Blocks['gpgsensorread'] = {
     init: function () {
       this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable('dex_sensor'), 'dex_sensor')
+        .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
         .appendField(new Blockly.FieldDropdown([
           ['read()', 'read()'], 
+          ['percent_read()', 'percent_read()'],
           ['read_inches()', 'read_inches()'], 
           ['read_mm()', 'read_mm()'],
-        ]), 'action'); 
-      this.setInputsInline(true);
-      this.setOutput(true, null);
-      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
-      this.setColour(maincolour, inputcolour, bordercolour);
-      // this.setTooltip('negates a Boolean value');
-      // this.setHelpUrl('');
-    },
-  };
-
-  Blocks['gpglinefollowerread'] = {
-    init: function () {
-      this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable('dex_sensor'), 'dex_sensor')
-        .appendField(new Blockly.FieldDropdown([
           ['position()', 'position()'], 
           ['position_bw()', 'position_bw()'], 
           ['position_01()', 'position_01()'],
@@ -374,16 +321,32 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
   Blocks['gpglinefollowersetcalibration'] = {
     init: function () {
       this.appendDummyInput()
-        .appendField(new Blockly.FieldVariable('dex_sensor'), 'dex_sensor')
+        .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
         .appendField('.set_calibration(')
         .appendField(new Blockly.FieldDropdown([
-          ['white', 'white'], 
-          ['black', 'black'], 
-        ]), 'action'); 
-      this.appendDummyInput()
+          ['white', '"white"'], 
+          ['black', '"black"'], 
+        ]), 'action')
         .appendField(')')
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('negates a Boolean value');
+      // this.setHelpUrl('');
+    },
+  };
+
+  Blocks['gpglinefollowergetcalibration'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable('my_sensor'), 'my_sensor')
+        .appendField(new Blockly.FieldDropdown([
+          ['get_white_calibration()', 'get_white_calibration()'], 
+          ['get_black_calibration()', 'get_black_calibration()'], 
+        ]), 'action')
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setOutputShape(Blockly.OUTPUT_SHAPE_ROUND);
       this.setColour(maincolour, inputcolour, bordercolour);
       // this.setTooltip('negates a Boolean value');
       // this.setHelpUrl('');
@@ -407,11 +370,14 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
         .appendField(new Blockly.FieldDropdown([
           ['init_buzzer', 'init_buzzer'], 
           ['init_led', 'init_led'],
+          ['init_servo', 'init_servo'],
         ]), 'action')
         .appendField("(port='")
         .appendField(new Blockly.FieldDropdown([
           ['AD1', 'AD1'], 
           ['AD2', 'AD2'],
+          ['SERVO1', 'SERVO1'],
+          ['SERVO2', 'SERVO2'],
         ]), 'port')
         .appendField("')")
         ;
@@ -427,11 +393,36 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     init: function () {
       this.appendDummyInput()
         .appendField(new Blockly.FieldVariable('my_actuator'), 'my_actuator')
-        .appendField('.write('); 
+        .appendField(new Blockly.FieldDropdown([
+          ['write', 'write'], 
+          ['write_freq', 'write_freq'], 
+          ['rotate_servo', 'rotate_servo'],
+          ['reset_servo', 'reset_servo'],
+          ['sound', 'sound'], 
+          ['sound_off', 'sound_off'],
+          ['sound_on', 'sound_on'],
+        ]), 'action')
+        .appendField('('); 
       this.appendValueInput("actuator_value")
         .setCheck(null);
       this.appendDummyInput()
         .appendField(')');
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(maincolour, inputcolour, bordercolour);
+      // this.setTooltip('negates a Boolean value');
+      // this.setHelpUrl('');
+    },
+  };
+
+  Blocks['gpgactuatornoparams'] = {
+    init: function () {
+      this.appendDummyInput()
+        .appendField(new Blockly.FieldVariable('my_actuator'), 'my_actuator')
+        .appendField(new Blockly.FieldDropdown([
+          ['reset_servo()', 'reset_servo()'],
+          ['disable_servo()', 'disable_servo()'],
+        ]), 'action');
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(maincolour, inputcolour, bordercolour);

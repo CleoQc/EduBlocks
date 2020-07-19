@@ -1,6 +1,6 @@
 <category name="GoPiGo" colour="#CC3333" iconclass="blocklyTreeIconCustom gopigo">
 
-  <label text="Imports and Init" web-class="myLabelStyle"></label>
+  <label text="Import and Init" web-class="myLabelStyle"></label>
 
   <block type="import_easygopigo3"></block>
   <block type="gpgset"></block>
@@ -68,23 +68,15 @@
   <block type="gpgblinkers"></block>
 </category>
 
-<category name="GoPiGo Sensors" colour="#CC3333" iconclass="blocklyTreeIconCustom sensor">
+<category name="GoPiGo Add-Ons" colour="#CC3333" iconclass="blocklyTreeIconCustom sensor">
   <label text="Init" web-class="myLabelStyle"></label>
-  <block type="gpgdextersensors"></block>
-  <block type="gpganalogdigitalsensors"></block>
-  <label text="Distance sensor" web-class="myLabelStyle"></label>
-  <block type="gpgdistanceread"></block>
-  <label text="Line Follower" web-class="myLabelStyle"></label>
-  <block type="gpglinefollowerread"></block>
-  <block type="gpglinefollowersetcalibration"></block>
-  <label text="Button, simple light sensor, loudness sensor" web-class="myLabelStyle"></label>
-  <block type="gpgsensorread"></block>
-</category>
-
-<category name="GoPiGo Actuators" colour="#CC3333" iconclass="blocklyTreeIconCustom actuator">
-  <label text="Init" web-class="myLabelStyle"></label>
+  <block type="gpgsensor"></block>
   <block type="gpganalogdigitalactuators"></block>
-  <label text="Buzzer, LED" web-class="myLabelStyle"></label>
+
+  <label text="Sensor Reading" web-class="myLabelStyle"></label>
+  <block type="gpgsensorread"></block>
+
+  <label text="Actuators" web-class="myLabelStyle"></label>
   <block type="gpgactuatorwrite">
       <value name="actuator_value">
       <shadow type="textinline">
@@ -92,5 +84,11 @@
       </shadow>
     </value>
   </block>
+  <block type="gpgactuatornoparams"></block>
+
+  <label text="Sensor Calibration" web-class="myLabelStyle"></label>
+  <block type="gpglinefollowersetcalibration"></block>
+  <block type="gpglinefollowergetcalibration"></block>
 </category>
+
 <sep></sep>
