@@ -280,6 +280,10 @@ export async function getToolBoxXml(extensions: Extension[]) {
     (await import('./pi/gpiozero/definitions')).default(Blockly.Blocks);
     (await import('./pi/gpiozero/generators')).default(Blockly.Python as any);
     toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'pi', 'gpiozero', 'toolbox.xml'));
+
+    (await import('./web/ml4kids/definitions')).default(Blockly.Blocks);
+    (await import('./web/ml4kids/generators')).default(Blockly.Python as any);
+    toolBoxXml += fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'blocks', 'web', 'ml4kids', 'toolbox.xml'));
   }
 
   toolBoxXml += '</xml>';
