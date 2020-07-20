@@ -20,6 +20,15 @@ export default function define(Python: Blockly.BlockGenerators) {
     return code;
   };
 
+  Python['upper_lower'] = function(block) {
+    var value_string = Blockly.Python.valueToCode(block, 'string', Blockly.Python.ORDER_ATOMIC);
+    var dropdown_upperlower = block.getFieldValue('upperlower');
+    // TODO: Assemble Python into code variable.
+    var code = value_string + '.' + dropdown_upperlower + '()';
+    // TODO: Change ORDER_NONE to the correct strength.
+    return [code, Blockly.Python.ORDER_ATOMIC];
+  };
+
   Python['webpass'] = function (block) {
     const code = 'pass \n';
     return code;

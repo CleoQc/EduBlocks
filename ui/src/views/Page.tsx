@@ -442,6 +442,7 @@ export default class Page extends Component<Props, State> {
         window.dispatchEvent(new Event('resize'))
 
         if (this.remoteShellView) {
+            this.setState({ output: 'remote' });
             this.remoteShellView.focus();
             this.remoteShellView.reset();
 

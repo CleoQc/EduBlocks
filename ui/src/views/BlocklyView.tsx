@@ -65,6 +65,14 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
           minScale: 0.3,
           scaleSpeed: 1.2,
         },
+
+        grid: {
+          spacing: 30,
+          length: 7,
+          colour: "rgba(189, 195, 199, 0.52)",
+          snap: false
+        },
+
         
         media: 'blockly/media/',
         collapse: false,

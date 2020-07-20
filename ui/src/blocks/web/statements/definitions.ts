@@ -94,10 +94,26 @@ export default function define(Blocks: Blockly.BlockDefinitions) {
     }
   };
 
+  Blocks['upper_lower'] = {
+    init: function() {
+      this.appendValueInput("string")
+          .setCheck(null);
+      this.appendDummyInput()
+          .appendField(".")
+          .appendField(new Blockly.FieldDropdown([["upper","upper"], ["lower","lower"]]), "upperlower")
+          .appendField("()");
+      this.setInputsInline(true);
+      this.setOutput(true, null);
+      this.setColour("#F89621");
+   this.setTooltip("Convert string to upper or lower case");
+   this.setHelpUrl("");
+    }
+  };
+
   Blocks['global'] = {
     init: function () {
       this.appendDummyInput()
-        .appendField('global ')
+        .appendField('global ');
       this.appendValueInput("text")
         .setCheck(null);
       this.setPreviousStatement(true, null);

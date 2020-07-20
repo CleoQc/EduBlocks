@@ -15,6 +15,16 @@ export default function define(Python: Blockly.BlockGenerators) {
     return code;
   };
 
+  Python['import_mlimages'] = function (block) {
+    const code = 'from mlimages import *\n';
+    return code;
+  };
+
+  Python['import_imagedata'] = function (block) {
+    const code = 'from imagedata import *\n';
+    return code;
+  };
+
   Python['import_time'] = function (block) {
     const code = 'import time\n';
     return code;

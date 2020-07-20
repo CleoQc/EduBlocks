@@ -35,17 +35,19 @@ export default class TrinketView extends Component<Props, {}> {
   public componentWillUnmount() {
     window.removeEventListener('keydown', this.escapeListener);
   }
-
+ 
   private getEscapedCode() {
-    console.log(this.props.pythonCode);
-
     let newpy = this.props.pythonCode;
     let mlmodel = "";
     let mltext = "";
+    let mlimages = "";
+    let imagedata = "";
     let usrbin = "#!/usr/bin/python3 \n"
 
     newpy = newpy.replace('from mltext import *', '');
     newpy = newpy.replace('from mlmodel import *', '');
+    newpy = newpy.replace('from mlimages import *', '');
+    newpy = newpy.replace('from imagedata import *', '');
 
     if (this.props.pythonCode.indexOf("from mltext import *") !== -1){
       mltext = fs.readFileSync("mltext.py", "utf8") + "\n";
@@ -55,9 +57,15 @@ export default class TrinketView extends Component<Props, {}> {
       mlmodel = fs.readFileSync("mlmodel.py", "utf8") + "\n";
     }
 
-    console.log(mlmodel + mltext + newpy); 
+    if (this.props.pythonCode.indexOf("from mlimages import *") !== -1){
+      mlimages = fs.readFileSync("mlimages.py", "utf8") + "\n";
+    }
 
-    return encodeURIComponent(usrbin + mlmodel + mltext + newpy);
+    if (this.props.pythonCode.indexOf("from imagedata import *") !== -1){
+      imagedata = fs.readFileSync("imagedata.py", "utf8") + "\n";
+    }
+
+    return encodeURIComponent(usrbin + mlmodel + mltext + mlimages + imagedata + newpy);
   }
 
   public close() {
