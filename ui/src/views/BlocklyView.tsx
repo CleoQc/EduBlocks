@@ -51,11 +51,7 @@ export default class BlocklyView extends Component<BlocklyViewProps, {}> {
       Blockly.BlockSvg.START_HAT = true;
 
       this.workspace = Blockly.inject(this.blocklyDiv, {
-        grid: {
-          spacing: 25,
-          length: 3,
-          colour: '#ccc',
-          snap: true},
+
         zoom:
         {
           controls: true,
